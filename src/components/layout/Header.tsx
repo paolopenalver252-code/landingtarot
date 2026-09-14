@@ -2,22 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { NAV_ITEMS } from "@/lib/navigation";
-import { mainSiteUrl } from "@/lib/seo";
+import { LANDING_NAV_ITEMS } from "@/lib/navigation";
 import Button from "@/components/ui/Button";
 
 /**
- * Header global de marca — fijo (sticky), fondo blanco con efecto glass y
- * sombra sutil al hacer scroll. Mismo diseño que en la web principal de
- * PSAI FLOW ACADEMY.
- *
- * A diferencia del proyecto principal, aquí no existe un Hero oscuro a
- * pantalla completa en "/" (esta landing siempre tuvo un Hero claro), así
- * que el header nace siempre sólido — el mismo comportamiento que ya tenía
- * esta página cuando vivía como sub-página del sitio principal — sin la
- * lógica de header transparente que solo aplicaba a la Home de ese sitio.
- * Los enlaces de navegación apuntan de vuelta a la web principal, que vive
- * en un dominio independiente (ver @/lib/navigation).
+ * Header propio de esta landing — NO es la navegación corporativa de PSAI
+ * FLOW ACADEMY. Solo tres anchors hacia las secciones de esta misma página
+ * más el CTA de conversión; nada enlaza fuera de aquí. Al ser anchors (no
+ * rutas), el pathname nunca cambia al navegar, así que el menú móvil se
+ * cierra explícitamente en el onClick de cada enlace en vez de depender de
+ * un cambio de ruta.
  */
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,6 +31,8 @@ export default function Header() {
     };
   }, [menuOpen]);
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <header
       className={`sticky top-0 z-50 w-full border-b border-primary/5 bg-surface/80 backdrop-blur-md transition-all duration-500 ${
@@ -44,24 +40,21 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between gap-6 px-6 lg:px-10">
-        {/* Logo — wordmark de texto en tanto no se reciba el logotipo definitivo */}
+        {/* Identidad: PSAI FLOW como marca, con el servicio como subtítulo —
+            nunca "PSAI FLOW Academy", que pertenece a la web corporativa. */}
         <Link
           href="/"
           className="flex shrink-0 flex-col leading-none transition-opacity duration-300 hover:opacity-75"
         >
-          <span className="font-heading text-2xl text-primary transition-colors duration-500">
-            PSAI FLOW
-          </span>
-          <span className="text-[0.65rem] font-sans uppercase tracking-[0.3em] text-accent-text transition-colors duration-500">
-            Academy
+          <span className="font-heading text-2xl text-primary">PSAI FLOW</span>
+          <span className="mt-1 font-heading text-[0.7rem] italic leading-snug text-accent-text">
+            Psicotarot &amp; Astrología Cabalística
           </span>
         </Link>
 
-        {/* Navegación desktop — a partir de xl: por debajo, 10 ítems no caben
-            con elegancia en una sola línea, así que se usa el menú hamburguesa. */}
-        <nav aria-label="Principal" className="hidden min-w-0 flex-1 justify-center xl:flex">
-          <ul className="flex items-center gap-4 2xl:gap-7">
-            {NAV_ITEMS.map((item) => (
+        <nav aria-label="Principal" className="hidden min-w-0 flex-1 justify-center lg:flex">
+          <ul className="flex items-center gap-8">
+            {LANDING_NAV_ITEMS.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -74,11 +67,9 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* CTA desktop — orientado a conversión (motor comercial: servicios
-            1:1), coherente con el CTA principal del sitio. */}
-        <div className="hidden shrink-0 xl:block">
-          <Button href={mainSiteUrl("/consultas")} variant="accent" size="sm">
-            Reservar consulta
+        <div className="hidden shrink-0 lg:block">
+          <Button href="#consulta" variant="accent" size="sm">
+            Solicitar consulta
           </Button>
         </div>
 
@@ -89,7 +80,7 @@ export default function Header() {
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          className="relative flex h-10 w-10 shrink-0 items-center justify-center xl:hidden"
+          className="relative flex h-10 w-10 shrink-0 items-center justify-center lg:hidden"
         >
           <span
             className={`absolute h-px w-6 bg-primary transition-all duration-300 ${
@@ -112,16 +103,17 @@ export default function Header() {
       {/* Panel móvil */}
       <div
         id="mobile-menu"
-        className={`overflow-hidden bg-surface/95 backdrop-blur-md transition-[max-height,opacity] duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] xl:hidden ${
-          menuOpen ? "max-h-[36rem] opacity-100" : "max-h-0 opacity-0"
+        className={`overflow-hidden bg-surface/95 backdrop-blur-md transition-[max-height,opacity] duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] lg:hidden ${
+          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <nav aria-label="Principal (móvil)" className="px-6 pb-8 pt-2">
           <ul className="flex flex-col divide-y divide-primary/10">
-            {NAV_ITEMS.map((item) => (
+            {LANDING_NAV_ITEMS.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  onClick={closeMenu}
                   className="block py-3 text-base font-medium text-primary transition-colors duration-300 hover:text-accent-text"
                 >
                   {item.label}
@@ -130,8 +122,8 @@ export default function Header() {
             ))}
           </ul>
           <div className="mt-6">
-            <Button href={mainSiteUrl("/consultas")} variant="accent" size="sm" className="w-full">
-              Reservar consulta
+            <Button href="#consulta" variant="accent" size="sm" className="w-full" onClick={closeMenu}>
+              Solicitar consulta
             </Button>
           </div>
         </nav>

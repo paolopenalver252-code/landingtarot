@@ -7,8 +7,8 @@ import Differential from "@/components/sections/landing/Differential";
 import ForWhom from "@/components/sections/landing/ForWhom";
 import Experience from "@/components/sections/landing/Experience";
 import ClosingQuote from "@/components/sections/landing/ClosingQuote";
-import FinalCta from "@/components/sections/FinalCta";
-import { buildPageMetadata, mainSiteUrl } from "@/lib/seo";
+import Consulta from "@/components/sections/landing/Consulta";
+import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Psicotarot y Astrología Cabalística",
@@ -36,12 +36,7 @@ export default function PsicotarotAstrologiaCabalisticaPage() {
           </>
         }
       />
-      <FinalCta
-        heading="Empieza por conocerte desde otra perspectiva."
-        description="Si sientes que es el momento de explorar tu proceso con mayor profundidad, puedes solicitar una consulta de Psicotarot y Astrología Cabalística."
-        primaryCta={{ label: "Solicitar consulta", href: mainSiteUrl("/contacto#formulario-contacto") }}
-        secondaryCta={{ label: "Contactar", href: mainSiteUrl("/contacto") }}
-      />
+      <Consulta />
     </>
   );
 }

@@ -23,7 +23,7 @@ const STEPS = [
  */
 export default function Experience() {
   return (
-    <section id="la-consulta" className="scroll-mt-24 bg-surface-alt py-24 lg:py-32">
+    <section id="experiencia" className="scroll-mt-24 bg-surface-alt py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="La experiencia" title="Una consulta. Un espacio para ti." />

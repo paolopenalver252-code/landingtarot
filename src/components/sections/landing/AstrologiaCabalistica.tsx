@@ -15,7 +15,7 @@ const AREAS = [
 
 export default function AstrologiaCabalistica() {
   return (
-    <section id="astrologia-cabalistica" className="scroll-mt-24 bg-surface-alt py-24 lg:py-32">
+    <section id="astrologia" className="scroll-mt-24 bg-surface-alt py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal className="lg:order-2">

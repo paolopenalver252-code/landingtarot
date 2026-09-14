@@ -6,22 +6,24 @@ export type NavItem = {
 };
 
 /**
- * Navegación global de marca (Header y Footer). Esta landing vive en un
- * dominio independiente del resto de PSAI FLOW ACADEMY, así que cada
- * entrada apunta de vuelta a la web principal (@/lib/seo mainSiteUrl) en
- * lugar de a rutas de este proyecto, que no existen aquí.
+ * Navegación propia de esta landing — tres anchors internos hacia sus
+ * propias secciones. Nada aquí enlaza a la web principal de PSAI FLOW
+ * ACADEMY: esta página debe poder recorrerse de principio a fin sin salir
+ * de sí misma.
  */
-export const NAV_ITEMS: NavItem[] = [
-  { label: "Inicio", href: mainSiteUrl("/") },
-  { label: "Método PSAI FLOW", href: mainSiteUrl("/metodo-psai-flow") },
-  { label: "La Academia", href: mainSiteUrl("/academia") },
-  { label: "Cursos", href: mainSiteUrl("/cursos") },
-  { label: "Consultas", href: mainSiteUrl("/consultas") },
-  { label: "Limpieza Energética", href: mainSiteUrl("/limpieza-energetica-proteccion") },
-  { label: "Libros", href: mainSiteUrl("/libros") },
-  { label: "Contacto", href: mainSiteUrl("/contacto") },
+export const LANDING_NAV_ITEMS: NavItem[] = [
+  { label: "Psicotarot", href: "#psicotarot" },
+  { label: "Astrología", href: "#astrologia" },
+  { label: "La experiencia", href: "#experiencia" },
 ];
 
+/**
+ * Enlaces legales — deliberadamente externos: esta landing no tiene sus
+ * propias páginas de aviso legal, privacidad o cookies, así que apuntan a
+ * las páginas reales de la web principal en vez de inventar contenido legal
+ * propio. Es la única excepción a "todo enlace se queda dentro de la
+ * landing".
+ */
 export const LEGAL_ITEMS: NavItem[] = [
   { label: "Aviso legal", href: mainSiteUrl("/legal/aviso-legal") },
   { label: "Política de privacidad", href: mainSiteUrl("/legal/privacidad") },
