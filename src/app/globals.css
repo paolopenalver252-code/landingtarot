@@ -6,28 +6,30 @@
  * Cualquier componente nuevo debe consumir estos tokens en lugar de valores sueltos.
  */
 :root {
-  /* Color */
-  --color-primary: #0f2d52;
-  --color-secondary: #163b67;
-  --color-accent: #c8a35f;
-  --color-accent-hover: #d9b97a;
+  /* Color — paleta editorial refinada (segunda pasada de dirección
+     artística): marfil cálido + azul noche/petróleo + dorado champagne
+     como único acento. Sustituye al navy/dorado más saturados de la
+     primera versión; la relación entre tokens (accent-text accesible,
+     mist translúcido sobre fondo oscuro, etc.) se mantiene igual. */
+  --color-primary: #101a27; /* azul noche */
+  --color-secondary: #183a4a; /* azul petróleo */
+  --color-accent: #b99a63; /* dorado champagne — SOLO como acento puntual */
+  --color-accent-hover: #c9ad7c;
   /* Variante accesible del dorado — SOLO para texto y fondos de botón con
-     texto encima sobre fondo claro (el #C8A35F original no cumple 4.5:1
-     de WCAG AA en esos usos). El dorado decorativo original no cambia. */
-  --color-accent-text: #8a6a2e;
-  --color-accent-text-hover: #6f5424;
-  --color-surface: #ffffff;
-  --color-surface-alt: #fafaf8;
-  --color-ink: #2d2d2d;
-  /* Texto secundario (párrafos, descripciones, tarjetas) sobre fondo claro:
-     gris azulado sólido — más presencia y legibilidad que las variantes
-     antiguas basadas en opacidad (text-ink/60~70), sin llegar a negro puro. */
-  --color-ink-muted: #414d5a;
+     texto encima sobre fondo claro (el dorado champagne decorativo no
+     cumple 4.5:1 de WCAG AA en esos usos). El dorado decorativo no cambia. */
+  --color-accent-text: #8a7042;
+  --color-accent-text-hover: #6f5934;
+  --color-surface: #f7f5f0; /* marfil cálido */
+  --color-surface-alt: #f0ebe1;
+  --color-ink: #17202a;
+  /* Texto secundario (párrafos, descripciones, tarjetas) sobre fondo claro. */
+  --color-ink-muted: #68717a;
   /* Texto terciario (microtexto, labels bajo cifras, roles, notas breves)
-     sobre fondo claro: mismo tinte, un peldaño más discreto que ink-muted. */
-  --color-ink-subtle: #616d7a;
+     sobre fondo claro: un peldaño más discreto que ink-muted. */
+  --color-ink-subtle: #838b92;
   /* Equivalentes sobre fondo navy (bg-primary/bg-secondary): blanco
-     traslúcido, con más opacidad que antes para que el texto respire con
+     traslúcido, con suficiente opacidad para que el texto respire con
      presencia real sobre el azul profundo. */
   --color-mist: rgba(255, 255, 255, 0.92);
   --color-mist-subtle: rgba(255, 255, 255, 0.76);
@@ -43,8 +45,8 @@
   --font-body-muted: var(--font-dm-sans), "DM Sans", ui-sans-serif, system-ui, sans-serif;
 
   /* Sombras premium — siempre muy suaves, nunca duras */
-  --shadow-soft: 0 1px 2px rgba(15, 45, 82, 0.04), 0 12px 32px rgba(15, 45, 82, 0.06);
-  --shadow-header: 0 1px 0 rgba(15, 45, 82, 0.04), 0 8px 24px rgba(15, 45, 82, 0.05);
+  --shadow-soft: 0 1px 2px rgba(16, 26, 39, 0.04), 0 12px 32px rgba(16, 26, 39, 0.06);
+  --shadow-header: 0 1px 0 rgba(16, 26, 39, 0.04), 0 8px 24px rgba(16, 26, 39, 0.05);
 }
 
 @theme inline {

@@ -21,7 +21,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-primary text-mist">
-      <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-6 px-6 py-16 text-center lg:px-8">
+      <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-7 px-6 py-20 text-center lg:px-8">
         <div className="flex flex-col items-center leading-none">
           <span className="font-heading text-2xl text-white">PSAI FLOW</span>
           <span className="mt-2 font-heading text-sm italic text-accent">

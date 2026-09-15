@@ -1,5 +1,11 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { animate } from "animejs";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
+import { easeOut } from "@/lib/motion/tokens";
+import { prefersReducedMotion } from "@/lib/motion/environment";
 
 const STEPS = [
   {
@@ -18,22 +24,53 @@ const STEPS = [
 ];
 
 /**
- * Círculo numerado + conector punteado, ampliado con una descripción por
- * paso — horizontal en escritorio, vertical en móvil.
+ * Timeline editorial: círculo numerado + conector que se activa (se llena
+ * de dorado) cuando ese tramo entra en viewport — horizontal en escritorio,
+ * vertical en móvil. Cada conector anima su propio eje (scaleX o scaleY)
+ * de forma independiente.
  */
 export default function Experience() {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track || prefersReducedMotion()) return;
+
+    const connectors = track.querySelectorAll<HTMLElement>("[data-connector]");
+    const observers: IntersectionObserver[] = [];
+
+    connectors.forEach((el) => {
+      const axis = el.dataset.connector === "y" ? "scaleY" : "scaleX";
+      el.style.transform = `${axis}(0)`;
+      el.style.transformOrigin = axis === "scaleY" ? "top" : "left";
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          observer.disconnect();
+          animate(el, { [axis]: [0, 1], duration: 700, ease: easeOut });
+        },
+        { threshold: 0.5 }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((observer) => observer.disconnect());
+  }, []);
+
   return (
-    <section id="experiencia" className="scroll-mt-24 bg-surface-alt py-24 lg:py-32">
+    <section id="experiencia" className="scroll-mt-24 bg-surface-alt py-28 lg:py-40">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="La experiencia" title="Una consulta. Un espacio para ti." />
         </Reveal>
 
-        <div className="mt-16 flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
+        <div ref={trackRef} className="mt-20 flex flex-col sm:flex-row sm:items-start sm:justify-between">
           {STEPS.map((step, index) => (
-            <div key={step.title} className="flex flex-1 items-start sm:contents">
+            <div key={step.title} className="flex flex-1 flex-col items-center sm:contents">
               <Reveal
-                delay={index * 120}
+                delay={index * 140}
                 className="flex flex-1 flex-col items-center gap-4 text-center"
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-text font-heading text-lg text-white">
@@ -44,11 +81,22 @@ export default function Experience() {
                   {step.description}
                 </p>
               </Reveal>
+
               {index < STEPS.length - 1 ? (
-                <div
-                  aria-hidden
-                  className="hidden flex-1 border-t border-dashed border-accent/30 sm:mt-6 sm:block"
-                />
+                <>
+                  {/* Móvil: conector vertical entre pasos */}
+                  <div
+                    aria-hidden
+                    className="relative my-6 h-10 w-px overflow-hidden bg-primary/15 sm:hidden"
+                  >
+                    <div data-connector="y" className="absolute inset-0 bg-accent" />
+                  </div>
+                  {/* Escritorio: conector horizontal entre pasos */}
+                  <div aria-hidden className="relative hidden flex-1 sm:mt-6 sm:block">
+                    <div className="absolute inset-0 border-t border-dashed border-accent/25" />
+                    <div data-connector="x" className="absolute inset-0 border-t-2 border-accent" />
+                  </div>
+                </>
               ) : null}
             </div>
           ))}

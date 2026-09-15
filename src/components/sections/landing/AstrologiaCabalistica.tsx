@@ -13,18 +13,47 @@ const AREAS = [
   { icon: Compass, title: "Procesos de evolución personal" },
 ];
 
+/**
+ * Contrapunto visual de Psicotarot: imagen a la izquierda / texto a la
+ * derecha (en Psicotarot es al revés), mismo sistema visual, ritmo de
+ * entrada ligeramente distinto (aquí la imagen se adelanta al texto).
+ */
 export default function AstrologiaCabalistica() {
   return (
-    <section id="astrologia" className="scroll-mt-24 bg-surface-alt py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <Reveal className="lg:order-2">
+    <section id="astrologia" className="scroll-mt-24 overflow-hidden bg-surface-alt">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:items-stretch">
+        {/* Columna de imagen — a sangre, editorial */}
+        <div className="relative order-1 h-[52vh] overflow-hidden sm:h-[64vh] lg:order-1 lg:h-auto">
+          <Reveal variant="scale" className="absolute inset-0 h-full w-full">
+            <PlaceholderImage
+              label="Fotografía de carta astral pendiente"
+              tone="dark"
+              rounded={false}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="h-full w-full"
+            />
+          </Reveal>
+
+          <span
+            aria-hidden
+            className="pointer-events-none absolute left-6 top-6 z-10 font-heading text-8xl leading-none text-accent/25 sm:left-10 sm:top-10 sm:text-9xl"
+          >
+            02
+          </span>
+          <span className="pointer-events-none absolute bottom-6 right-6 z-10 text-[11px] font-medium uppercase tracking-[0.25em] text-white/80 sm:bottom-10 sm:right-10">
+            Astrología Cabalística · Ciclos
+          </span>
+        </div>
+
+        {/* Columna de texto */}
+        <div className="order-2 flex flex-col justify-center gap-6 px-6 py-20 sm:px-10 lg:order-2 lg:px-16 lg:py-32 xl:pr-24">
+          <Reveal delay={160}>
             <div className="flex flex-col gap-6">
               <Eyebrow>Astrología Cabalística</Eyebrow>
-              <h2 className="font-heading text-3xl leading-tight text-primary sm:text-4xl">
+              <h2 className="max-w-xl font-heading text-3xl leading-tight text-primary sm:text-4xl lg:text-5xl">
                 Leer tu mapa para comprender tus ciclos.
               </h2>
-              <p className="text-base leading-relaxed text-ink-muted text-body">
+              <p className="max-w-lg text-base leading-relaxed text-ink-muted text-body">
                 La Astrología Cabalística parte de la interpretación de la carta natal para
                 observar tendencias, potenciales, patrones y ciclos desde una perspectiva
                 simbólica y evolutiva. Una herramienta para profundizar en el conocimiento
@@ -35,22 +64,6 @@ export default function AstrologiaCabalistica() {
                 <span className="text-sm font-medium text-primary">Puede ayudarte a explorar:</span>
                 <FeatureTags items={AREAS} align="left" />
               </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={150} className="lg:order-1">
-            <div className="relative">
-              <span
-                aria-hidden
-                className="absolute -right-4 -top-6 z-10 font-heading text-7xl text-accent/25 sm:-right-6 sm:text-8xl"
-              >
-                02
-              </span>
-              <PlaceholderImage
-                label="Fotografía de carta astral pendiente"
-                sizes="(max-width: 1024px) 100vw, 40rem"
-                className="relative aspect-[4/5] w-full shadow-soft"
-              />
             </div>
           </Reveal>
         </div>

@@ -1,24 +1,56 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { animate } from "animejs";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import Watermark from "@/components/ui/Watermark";
+import GradientText from "@/components/reactbits/GradientText";
+import { easeOut } from "@/lib/motion/tokens";
+import { prefersReducedMotion } from "@/lib/motion/environment";
 
 /**
- * Sección más visual de la landing: compara Psicotarot y Astrología
- * Cabalística lado a lado sobre fondo navy.
+ * Composición editorial (no dos tarjetas ni un "VS"): los dos nombres
+ * aparecen separados y se aproximan ligeramente al entrar en viewport —
+ * "dos herramientas → una visión", sin sensación de competición.
  */
 export default function Differential() {
+  const leftRef = useRef<HTMLSpanElement>(null);
+  const rightRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const left = leftRef.current;
+    const right = rightRef.current;
+    if (!left || !right || prefersReducedMotion()) return;
+
+    left.style.transform = "translateX(-14px)";
+    right.style.transform = "translateX(14px)";
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        animate(left, { translateX: [-14, 0], duration: 800, ease: easeOut });
+        animate(right, { translateX: [14, 0], duration: 800, ease: easeOut });
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(left);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="dos-lenguajes"
-      className="relative scroll-mt-24 overflow-hidden bg-primary py-24 lg:py-32"
+      className="relative scroll-mt-24 overflow-hidden bg-primary py-28 lg:py-40"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,163,95,0.15),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(185,154,99,0.14),transparent_60%)]"
       />
       <Watermark className="-bottom-24 -left-10 z-0" />
 
-      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
+      <div className="relative mx-auto max-w-4xl px-6 text-center lg:px-8">
         <Reveal>
           <SectionHeading
             eyebrow="La combinación"
@@ -27,37 +59,37 @@ export default function Differential() {
           />
         </Reveal>
 
-        <div className="mt-16 flex flex-col items-stretch gap-6 sm:flex-row sm:items-center sm:justify-center sm:gap-0">
-          <Reveal delay={100} className="flex-1">
-            <div className="flex h-full flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-8 text-center sm:text-left">
-              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">
-                Psicotarot
-              </span>
-              <p className="font-heading text-xl leading-snug text-white">
-                Símbolos, situación presente, reflexión y perspectiva.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={200} className="flex shrink-0 items-center justify-center px-6 py-2">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/30 font-heading text-sm italic text-accent">
-              vs
+        <div className="mt-20 flex flex-col items-center gap-6">
+          <Reveal>
+            <span
+              ref={leftRef}
+              className="inline-block font-heading text-2xl uppercase tracking-[0.2em] text-white sm:text-3xl"
+            >
+              Psicotarot
             </span>
           </Reveal>
 
-          <Reveal delay={300} className="flex-1">
-            <div className="flex h-full flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-8 text-center sm:text-left">
-              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">
-                Astrología Cabalística
-              </span>
-              <p className="font-heading text-xl leading-snug text-white">
-                Carta natal, ciclos, patrones y visión evolutiva.
-              </p>
-            </div>
+          <Reveal delay={100}>
+            <span aria-hidden className="block h-10 w-px bg-accent/40" />
+          </Reveal>
+
+          <Reveal delay={200}>
+            <span
+              ref={rightRef}
+              className="inline-block font-heading text-2xl uppercase tracking-[0.2em] text-white sm:text-3xl"
+            >
+              Astrología Cabalística
+            </span>
+          </Reveal>
+
+          <Reveal delay={350}>
+            <p className="mt-8 font-heading text-3xl italic sm:text-4xl">
+              <GradientText>Una mirada más profunda.</GradientText>
+            </p>
           </Reveal>
         </div>
 
-        <Reveal delay={400}>
+        <Reveal delay={450}>
           <p className="mx-auto mt-16 max-w-2xl text-center text-base leading-relaxed text-mist text-body">
             Cuando ambas miradas se complementan, permiten observar una experiencia personal
             desde diferentes ángulos: lo que estás viviendo, cómo lo interpretas y qué patrones

@@ -27,15 +27,7 @@ export default function PsicotarotAstrologiaCabalisticaPage() {
       <Differential />
       <ForWhom />
       <Experience />
-      <ClosingQuote
-        quote={
-          <>
-            A veces no necesitamos más respuestas.
-            <br className="hidden sm:block" /> Necesitamos una nueva forma de mirar las
-            preguntas.
-          </>
-        }
-      />
+      <ClosingQuote quote="A veces no necesitamos más respuestas. Necesitamos una nueva forma de mirar las preguntas." />
       <Consulta />
     </>
   );

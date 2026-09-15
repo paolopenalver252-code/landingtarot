@@ -17,7 +17,7 @@ export function renderOgImage(title: string, eyebrow: string = "PSAI FLOW ACADEM
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(135deg, #0f2d52 0%, #163b67 100%)",
+          background: "linear-gradient(135deg, #101a27 0%, #183a4a 100%)",
         }}
       >
         <div
@@ -25,7 +25,7 @@ export function renderOgImage(title: string, eyebrow: string = "PSAI FLOW ACADEM
             display: "flex",
             alignItems: "center",
             gap: 16,
-            color: "#c8a35f",
+            color: "#b99a63",
             fontSize: 26,
             fontWeight: 600,
             textTransform: "uppercase",
@@ -40,7 +40,7 @@ export function renderOgImage(title: string, eyebrow: string = "PSAI FLOW ACADEM
             display: "flex",
             width: 90,
             height: 3,
-            background: "#c8a35f",
+            background: "#b99a63",
           }}
         />
         <div

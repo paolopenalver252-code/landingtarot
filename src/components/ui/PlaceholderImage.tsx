@@ -19,6 +19,10 @@ type PlaceholderImageProps = {
    * para huecos de imagen de fondo a pantalla completa, donde el centro puede
    * coincidir con contenido de texto superpuesto. */
   labelPosition?: "center" | "corner";
+  /** Por defecto true. Desactivar para composiciones editoriales a sangre
+   * (sin esquinas redondeadas ni marco), como los bloques de imagen de
+   * Psicotarot/Astrología Cabalística. */
+  rounded?: boolean;
 };
 
 /**
@@ -35,10 +39,13 @@ export default function PlaceholderImage({
   priority = false,
   sizes = "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 40vw",
   labelPosition = "center",
+  rounded = true,
 }: PlaceholderImageProps) {
+  const roundedClass = rounded ? "rounded-2xl" : "";
+
   if (src) {
     return (
-      <div className={`relative overflow-hidden rounded-2xl ${className}`}>
+      <div className={`relative overflow-hidden ${roundedClass} ${className}`}>
         <Image
           src={src}
           alt={alt ?? ""}
@@ -54,14 +61,14 @@ export default function PlaceholderImage({
 
   const gradient =
     tone === "dark"
-      ? "bg-[radial-gradient(circle_at_30%_20%,rgba(200,163,95,0.25),transparent_60%),linear-gradient(135deg,#163B67,#0F2D52)]"
-      : "bg-[radial-gradient(circle_at_30%_20%,rgba(200,163,95,0.18),transparent_60%),linear-gradient(135deg,#FAFAF8,#F0EEE8)]";
+      ? "bg-[radial-gradient(circle_at_30%_20%,rgba(185,154,99,0.22),transparent_60%),linear-gradient(135deg,#183A4A,#101A27)]"
+      : "bg-[radial-gradient(circle_at_30%_20%,rgba(185,154,99,0.16),transparent_60%),linear-gradient(135deg,#F7F5F0,#EDE6D8)]";
   const iconColor = tone === "dark" ? "text-white/30" : "text-primary/20";
   const labelColor = tone === "dark" ? "text-white/40" : "text-primary/35";
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border border-dashed ${
+      className={`relative overflow-hidden border border-dashed ${roundedClass} ${
         labelPosition === "corner" ? "flex items-end justify-end p-6" : "flex items-center justify-center"
       } ${tone === "dark" ? "border-white/15" : "border-primary/10"} ${gradient} ${className}`}
     >

@@ -6,7 +6,7 @@ import Watermark from "@/components/ui/Watermark";
 import Button from "@/components/ui/Button";
 
 const inputClass =
-  "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-mist-subtle transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
+  "w-full border-0 border-b border-white/20 bg-transparent px-1 py-3 text-base text-white placeholder:text-mist-subtle transition-colors duration-300 focus-visible:border-accent";
 
 const labelClass = "text-xs font-medium uppercase tracking-wide text-mist-subtle";
 
@@ -26,18 +26,18 @@ export default function Consulta() {
   return (
     <section
       id="consulta"
-      className="relative scroll-mt-24 overflow-hidden bg-primary py-24 lg:py-32"
+      className="relative scroll-mt-24 overflow-hidden bg-primary py-28 lg:py-40"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,163,95,0.15),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(185,154,99,0.15),transparent_60%)]"
       />
       <Watermark className="-bottom-20 -right-10 z-0" />
 
-      <div className="relative mx-auto flex max-w-xl flex-col items-center gap-10 px-6 text-center lg:px-8">
+      <div className="relative mx-auto flex max-w-xl flex-col items-center gap-12 px-6 text-center lg:px-8">
         <div className="flex flex-col items-center gap-6">
           <Reveal>
-            <h2 className="font-heading text-3xl leading-tight text-white sm:text-4xl">
+            <h2 className="font-heading text-3xl leading-tight text-white sm:text-4xl lg:text-5xl">
               Empieza por conocerte desde otra perspectiva.
             </h2>
           </Reveal>
@@ -50,7 +50,7 @@ export default function Consulta() {
         </div>
 
         <Reveal delay={200} className="w-full">
-          <form onSubmit={handleSubmit} noValidate={false} className="flex w-full flex-col gap-5 text-left">
+          <form onSubmit={handleSubmit} noValidate={false} className="flex w-full flex-col gap-7 text-left">
             <div className="flex flex-col gap-2">
               <label htmlFor="consulta-nombre" className={labelClass}>
                 Nombre
