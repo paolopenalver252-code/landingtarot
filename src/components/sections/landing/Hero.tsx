@@ -183,9 +183,6 @@ export default function Hero() {
           scrolledPast ? "opacity-0" : "opacity-100"
         }`}
       >
-        <span className="text-[10px] font-medium uppercase tracking-[0.35em] text-white/70 transition-colors duration-300 group-hover:text-white">
-          Scroll
-        </span>
         <span aria-hidden className="relative h-9 w-px overflow-hidden bg-white/20">
           <span ref={scrollLineRef} className="absolute inset-x-0 top-0 h-1/3 bg-accent" />
         </span>

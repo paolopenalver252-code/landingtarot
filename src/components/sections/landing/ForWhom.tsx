@@ -1,5 +1,6 @@
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
+import ScrollStack, { ScrollStackItem } from "@/components/reactbits/ScrollStack";
 
 const PROFILES = [
   "Estás atravesando un cambio importante.",
@@ -11,39 +12,53 @@ const PROFILES = [
 ];
 
 /**
- * Perfiles presentados como índice editorial interactivo (número + línea),
- * sin iconos ni tarjetas: en hover, un desplazamiento mínimo, una línea
- * dorada y un cambio muy sutil de contraste.
+ * Composición de dos zonas: columna editorial estable a la izquierda
+ * (título + intro, sticky en desktop) y un Scroll Stack a la derecha —
+ * cada perfil existente se convierte en una tarjeta grande y legible que
+ * se apila con profundidad muy sutil a medida que se hace scroll normal
+ * (sin scroll hijacking, ver @/components/reactbits/ScrollStack).
  */
 export default function ForWhom() {
   return (
     <section id="para-quien" className="scroll-mt-24 bg-surface py-28 lg:py-40">
-      <div className="mx-auto max-w-5xl px-6 lg:px-8">
-        <Reveal>
-          <SectionHeading
-            eyebrow="¿Para quién puede ser?"
-            title="Quizás este sea tu momento para mirar hacia dentro."
-            description="Puede ser especialmente interesante para ti si estás atravesando un momento de cambio, búsqueda o necesidad de claridad."
-          />
-        </Reveal>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-[38%_1fr]">
+          {/* Columna izquierda — editorial, estable */}
+          <Reveal className="lg:sticky lg:top-32 lg:h-fit">
+            <SectionHeading
+              align="left"
+              eyebrow="¿Para quién puede ser?"
+              title="Quizás este sea tu momento para mirar hacia dentro."
+              description="Puede ser especialmente interesante para ti si estás atravesando un momento de cambio, búsqueda o necesidad de claridad."
+            />
+            <span aria-hidden className="mt-10 block h-16 w-px bg-accent/50" />
+          </Reveal>
 
-        <div className="mt-20 grid grid-cols-1 gap-x-12 gap-y-3 sm:grid-cols-2">
-          {PROFILES.map((profile, index) => (
-            <Reveal key={profile} delay={index * 70}>
-              <div className="group relative flex items-start gap-5 border-t border-primary/10 py-6 transition-transform duration-300 ease-out hover:translate-x-1.5">
-                <span className="font-heading text-2xl leading-none text-accent/50 transition-colors duration-300 group-hover:text-accent-text">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <p className="text-base leading-relaxed text-ink-muted transition-colors duration-300 text-body group-hover:text-ink">
-                  {profile}
-                </p>
-                <span
-                  aria-hidden
-                  className="absolute -bottom-px left-0 h-px w-0 bg-accent transition-all duration-300 ease-out group-hover:w-10"
-                />
-              </div>
-            </Reveal>
-          ))}
+          {/* Columna derecha — Scroll Stack */}
+          <Reveal delay={150}>
+            <ScrollStack
+              itemDistance={90}
+              itemScale={0.035}
+              itemStackDistance={20}
+              stackPosition={130}
+              baseScale={0.9}
+              blurAmount={0.6}
+            >
+              {PROFILES.map((profile, index) => (
+                <ScrollStackItem
+                  key={profile}
+                  className="flex min-h-[56vh] flex-col justify-center rounded-3xl border border-white/10 bg-primary p-8 shadow-soft sm:min-h-[60vh] sm:p-12 lg:min-h-[64vh] lg:p-14"
+                >
+                  <span className="font-heading text-6xl leading-none text-accent sm:text-7xl">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <p className="mt-8 max-w-md font-heading text-2xl leading-snug text-white sm:text-3xl lg:text-4xl">
+                    {profile}
+                  </p>
+                </ScrollStackItem>
+              ))}
+            </ScrollStack>
+          </Reveal>
         </div>
       </div>
     </section>

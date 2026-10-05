@@ -26,8 +26,8 @@ export default function AstrologiaCabalistica() {
         <div className="relative order-1 h-[52vh] overflow-hidden sm:h-[64vh] lg:order-1 lg:h-auto">
           <Reveal variant="scale" className="absolute inset-0 h-full w-full">
             <PlaceholderImage
-              label="Fotografía de carta astral pendiente"
-              tone="dark"
+              src="/images/astrologia-carta-natal.jpg"
+              alt="Carta astral sobre un escritorio, junto a un telescopio asomado a una ventana redonda con vistas a una ciudad nocturna e instrumentos astronómicos"
               rounded={false}
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="h-full w-full"

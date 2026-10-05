@@ -46,8 +46,8 @@ export default function Psicotarot() {
         <div className="relative order-1 h-[52vh] overflow-hidden sm:h-[64vh] lg:order-2 lg:h-auto">
           <Reveal delay={160} variant="scale" className="absolute inset-0 h-full w-full">
             <PlaceholderImage
-              label="Fotografía de Tarot pendiente"
-              tone="dark"
+              src="/images/psicotarot-cartas-diario.jpg"
+              alt="Cartas de Tarot y un diario de reflexión abierto junto a una ventana nocturna, en un interior sobrio e iluminado con luz tenue"
               rounded={false}
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="h-full w-full"
