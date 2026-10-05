@@ -1,5 +1,3 @@
-import { mainSiteUrl } from "@/lib/seo";
-
 export type NavItem = {
   label: string;
   href: string;
@@ -18,14 +16,12 @@ export const LANDING_NAV_ITEMS: NavItem[] = [
 ];
 
 /**
- * Enlaces legales — deliberadamente externos: esta landing no tiene sus
- * propias páginas de aviso legal, privacidad o cookies, así que apuntan a
- * las páginas reales de la web principal en vez de inventar contenido legal
- * propio. Es la única excepción a "todo enlace se queda dentro de la
- * landing".
+ * Enlaces legales — páginas propias de esta landing (ver @/app/aviso-legal,
+ * @/app/privacidad y @/app/cookies), para que el sitio sea completamente
+ * autónomo y no dependa de la web principal de PSAI FLOW ACADEMY.
  */
 export const LEGAL_ITEMS: NavItem[] = [
-  { label: "Aviso legal", href: mainSiteUrl("/legal/aviso-legal") },
-  { label: "Política de privacidad", href: mainSiteUrl("/legal/privacidad") },
-  { label: "Política de cookies", href: mainSiteUrl("/legal/cookies") },
+  { label: "Aviso legal", href: "/aviso-legal" },
+  { label: "Política de privacidad", href: "/privacidad" },
+  { label: "Política de cookies", href: "/cookies" },
 ];

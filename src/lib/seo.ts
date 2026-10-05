@@ -24,24 +24,6 @@ export const SITE_URL = resolveEnvUrl(
   "https://TU-DOMINIO-PENDIENTE.vercel.app"
 );
 
-/**
- * Dominio de la web principal de PSAI FLOW ACADEMY (proyecto separado).
- * Esta landing vive en un dominio propio y ya no tiene el resto de páginas
- * de la Academia (Consultas, Contacto, etc.), así que todo lo que no
- * resuelve por sí misma enlaza de vuelta hacia allí. Mismo placeholder que
- * ya usa el proyecto principal en su propio lib/seo.ts mientras el cliente
- * confirma el dominio real.
- */
-export const MAIN_SITE_URL = resolveEnvUrl(
-  process.env.NEXT_PUBLIC_MAIN_SITE_URL,
-  "https://www.psaiflowacademy.com"
-);
-
-/** Construye una URL absoluta hacia una ruta de la web principal de PSAI FLOW ACADEMY. */
-export function mainSiteUrl(path: string): string {
-  return `${MAIN_SITE_URL}${path}`;
-}
-
 export const SITE_NAME = "PSAI FLOW ACADEMY";
 
 export const DEFAULT_LOCALE = "es_ES";
