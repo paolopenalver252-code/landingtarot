@@ -60,10 +60,10 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experiencia" className="scroll-mt-24 bg-surface-alt py-28 lg:py-40">
+    <section id="experiencia" className="scroll-mt-24 bg-surface-alt pb-28 pt-40 lg:pb-40 lg:pt-56">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal>
-          <SectionHeading eyebrow="La experiencia" title="Una consulta. Un espacio para ti." />
+          <SectionHeading title="Una consulta. Un espacio para ti." />
         </Reveal>
 
         <div ref={trackRef} className="mt-20 flex flex-col sm:flex-row sm:items-start sm:justify-between">
