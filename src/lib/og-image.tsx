@@ -3,8 +3,8 @@ import { ImageResponse } from "next/og";
 export const OG_IMAGE_SIZE = { width: 1200, height: 630 };
 
 /**
- * Plantilla de imagen Open Graph/Twitter Card — identidad navy + dorado de
- * PSAI FLOW ACADEMY, sin depender de fotografía real.
+ * Plantilla de imagen Open Graph/Twitter Card — identidad obsidiana + oro
+ * apagado de PSAI FLOW ACADEMY, sin depender de fotografía real.
  */
 export function renderOgImage(title: string, eyebrow: string = "PSAI FLOW ACADEMY") {
   return new ImageResponse(
@@ -17,7 +17,7 @@ export function renderOgImage(title: string, eyebrow: string = "PSAI FLOW ACADEM
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(135deg, #101a27 0%, #183a4a 100%)",
+          background: "linear-gradient(135deg, #11100f 0%, #29231e 100%)",
         }}
       >
         <div
@@ -25,7 +25,7 @@ export function renderOgImage(title: string, eyebrow: string = "PSAI FLOW ACADEM
             display: "flex",
             alignItems: "center",
             gap: 16,
-            color: "#b99a63",
+            color: "#a99468",
             fontSize: 26,
             fontWeight: 600,
             textTransform: "uppercase",
@@ -40,7 +40,7 @@ export function renderOgImage(title: string, eyebrow: string = "PSAI FLOW ACADEM
             display: "flex",
             width: 90,
             height: 3,
-            background: "#b99a63",
+            background: "#a99468",
           }}
         />
         <div

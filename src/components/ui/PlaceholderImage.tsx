@@ -61,8 +61,8 @@ export default function PlaceholderImage({
 
   const gradient =
     tone === "dark"
-      ? "bg-[radial-gradient(circle_at_30%_20%,rgba(185,154,99,0.22),transparent_60%),linear-gradient(135deg,#183A4A,#101A27)]"
-      : "bg-[radial-gradient(circle_at_30%_20%,rgba(185,154,99,0.16),transparent_60%),linear-gradient(135deg,#F7F5F0,#EDE6D8)]";
+      ? "bg-[radial-gradient(circle_at_30%_20%,rgba(169,148,104,0.22),transparent_60%),linear-gradient(135deg,#29231E,#11100F)]"
+      : "bg-[radial-gradient(circle_at_30%_20%,rgba(169,148,104,0.16),transparent_60%),linear-gradient(135deg,#E9E2D6,#DCD0BC)]";
   const iconColor = tone === "dark" ? "text-white/30" : "text-primary/20";
   const labelColor = tone === "dark" ? "text-white/40" : "text-primary/35";
 

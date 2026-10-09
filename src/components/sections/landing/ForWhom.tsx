@@ -20,7 +20,7 @@ const PROFILES = [
  */
 export default function ForWhom() {
   return (
-    <section id="para-quien" className="scroll-mt-24 bg-surface py-28 lg:py-40">
+    <section id="para-quien" className="scroll-mt-24 overflow-x-clip bg-surface py-28 lg:py-40">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-[38%_1fr]">
           {/* Columna izquierda — editorial, estable */}

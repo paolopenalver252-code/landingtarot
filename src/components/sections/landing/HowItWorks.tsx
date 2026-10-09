@@ -9,27 +9,30 @@ import { prefersReducedMotion } from "@/lib/motion/environment";
 
 const STEPS = [
   {
-    title: "Reserva",
-    description: "Solicita tu consulta y encuentra el espacio adecuado para ti.",
+    title: "Solicitas tu consulta",
+    description: "Pides tu consulta y encontramos el espacio adecuado para ti.",
   },
   {
-    title: "Exploramos",
-    description: "Durante la sesión se profundiza en aquello que quieres comprender o explorar.",
+    title: "Compartes tu proceso",
+    description: "Compartes aquello que quieres explorar o comprender mejor.",
+  },
+  {
+    title: "Realizamos la sesión",
+    description: "Durante la sesión se profundiza en aquello que quieres comprender.",
   },
   {
     title: "Nueva perspectiva",
-    description:
-      "La consulta se convierte en un espacio para observar, reflexionar y obtener nuevas perspectivas sobre tu proceso.",
+    description: "Te llevas una nueva perspectiva sobre tu proceso.",
   },
 ];
 
 /**
- * Timeline editorial: círculo numerado + conector que se activa (se llena
- * de dorado) cuando ese tramo entra en viewport — horizontal en escritorio,
- * vertical en móvil. Cada conector anima su propio eje (scaleX o scaleY)
- * de forma independiente.
+ * "Cómo funciona": timeline editorial (antes "La experiencia") — círculo
+ * numerado + conector que se activa (se llena de dorado) cuando ese tramo
+ * entra en viewport, horizontal en escritorio y vertical en móvil. Cada
+ * conector anima su propio eje (scaleX o scaleY) de forma independiente.
  */
-export default function Experience() {
+export default function HowItWorks() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -60,15 +63,17 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experiencia" className="scroll-mt-24 bg-surface-alt pb-28 pt-40 lg:pb-40 lg:pt-56">
+    <section id="como-funciona" className="scroll-mt-24 bg-surface-alt pb-28 pt-40 lg:pb-40 lg:pt-56">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal>
           <SectionHeading title="Una consulta. Un espacio para ti." />
         </Reveal>
 
-        <div ref={trackRef} className="mt-20 flex flex-col sm:flex-row sm:items-start sm:justify-between">
+        {/* 4 pasos: el salto a fila se retrasa hasta lg (antes sm, con 3
+            pasos) para que no queden apretados en tablet. */}
+        <div ref={trackRef} className="mt-20 flex flex-col lg:flex-row lg:items-start lg:justify-between">
           {STEPS.map((step, index) => (
-            <div key={step.title} className="flex flex-1 flex-col items-center sm:contents">
+            <div key={step.title} className="flex flex-1 flex-col items-center lg:contents">
               <Reveal
                 delay={index * 140}
                 className="flex flex-1 flex-col items-center gap-4 text-center"
@@ -84,15 +89,15 @@ export default function Experience() {
 
               {index < STEPS.length - 1 ? (
                 <>
-                  {/* Móvil: conector vertical entre pasos */}
+                  {/* Móvil/tablet: conector vertical entre pasos */}
                   <div
                     aria-hidden
-                    className="relative my-6 h-10 w-px overflow-hidden bg-primary/15 sm:hidden"
+                    className="relative my-6 h-10 w-px overflow-hidden bg-primary/15 lg:hidden"
                   >
                     <div data-connector="y" className="absolute inset-0 bg-accent" />
                   </div>
                   {/* Escritorio: conector horizontal entre pasos */}
-                  <div aria-hidden className="relative hidden flex-1 sm:mt-6 sm:block">
+                  <div aria-hidden className="relative hidden flex-1 lg:mt-6 lg:block">
                     <div className="absolute inset-0 border-t border-dashed border-accent/25" />
                     <div data-connector="x" className="absolute inset-0 border-t-2 border-accent" />
                   </div>

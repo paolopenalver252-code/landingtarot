@@ -1,70 +1,85 @@
-import { Compass, Users, RefreshCw, Unlock, Eye, Sparkles } from "lucide-react";
-import Eyebrow from "@/components/ui/Eyebrow";
-import PlaceholderImage from "@/components/ui/PlaceholderImage";
-import FeatureTags from "@/components/ui/FeatureTags";
+import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
+import TextLink from "@/components/ui/TextLink";
 
 const AREAS = [
-  { icon: Compass, title: "Procesos personales" },
-  { icon: Users, title: "Relaciones y vínculos" },
-  { icon: RefreshCw, title: "Cambios y etapas vitales" },
-  { icon: Unlock, title: "Bloqueos y patrones" },
-  { icon: Eye, title: "Toma de conciencia" },
-  { icon: Sparkles, title: "Nuevas perspectivas" },
+  "Procesos personales",
+  "Relaciones y vínculos",
+  "Cambios y etapas vitales",
+  "Bloqueos y patrones",
+  "Toma de conciencia",
+  "Nuevas perspectivas",
 ];
 
+/**
+ * Capítulo 01. La fotografía se recorta en proporción de carta de tarot
+ * (2:3) con un filete interior — el mismo lenguaje que las cartas de los
+ * Oráculos Evolutivos — y se desplaza respecto al texto para romper la
+ * rejilla 50/50. Astrología Cabalística usa otro recorte (círculo).
+ */
 export default function Psicotarot() {
   return (
-    <section id="psicotarot" className="scroll-mt-24 overflow-hidden bg-surface">
-      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:items-stretch">
-        {/* Columna de texto */}
-        <div className="order-2 flex flex-col justify-center gap-6 px-6 py-20 sm:px-10 lg:order-1 lg:px-16 lg:py-32 xl:pl-24">
-          <Reveal>
-            <div className="flex flex-col gap-6">
-              <Eyebrow>Psicotarot</Eyebrow>
-              <h2 className="max-w-xl font-heading text-3xl leading-tight text-primary sm:text-4xl lg:text-5xl">
-                Comprender lo que estás viviendo desde otra perspectiva.
-              </h2>
-              <p className="max-w-lg text-base leading-relaxed text-ink-muted text-body">
-                El Psicotarot utiliza el lenguaje simbólico del Tarot como herramienta de
-                reflexión y autoconocimiento. La consulta permite explorar situaciones,
-                emociones, conflictos y procesos personales, poniendo el foco en aquello que
-                puede ayudarte a comprender mejor tu momento presente.
-              </p>
-
-              <div className="mt-4 flex flex-col gap-4">
-                <span className="text-sm font-medium text-primary">
-                  Durante una consulta puedes explorar:
-                </span>
-                <FeatureTags items={AREAS} align="left" />
-              </div>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Columna de imagen — a sangre, editorial */}
-        <div className="relative order-1 h-[52vh] overflow-hidden sm:h-[64vh] lg:order-2 lg:h-auto">
-          <Reveal delay={160} variant="scale" className="absolute inset-0 h-full w-full">
-            <PlaceholderImage
-              src="/images/psicotarot-cartas-diario.jpg"
-              alt="Cartas de Tarot y un diario de reflexión abierto junto a una ventana nocturna, en un interior sobrio e iluminado con luz tenue"
-              rounded={false}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="h-full w-full"
-            />
-          </Reveal>
-
-          <span
-            aria-hidden
-            className="pointer-events-none absolute right-6 top-6 z-10 font-heading text-8xl leading-none text-accent/25 sm:right-10 sm:top-10 sm:text-9xl"
-          >
+    <article
+      id="psicotarot"
+      aria-labelledby="psicotarot-titulo"
+      className="mx-auto max-w-7xl scroll-mt-24 px-6 pb-8 lg:px-8"
+    >
+      <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-16">
+        <Reveal className="lg:col-span-7 lg:col-start-1 lg:row-start-1">
+          <span aria-hidden className="block font-heading text-[5.5rem] leading-[0.8] text-accent-text/80 lining-nums sm:text-[7.5rem]">
             01
           </span>
-          <span className="pointer-events-none absolute bottom-6 left-6 z-10 text-[11px] font-medium uppercase tracking-[0.25em] text-white/80 sm:bottom-10 sm:left-10">
-            Psicotarot · Autoconocimiento
-          </span>
-        </div>
+          <h3
+            id="psicotarot-titulo"
+            className="mt-4 font-heading text-6xl leading-none text-primary sm:text-7xl lg:text-8xl"
+          >
+            Psicotarot
+          </h3>
+          <p className="mt-6 max-w-md font-heading text-2xl italic leading-snug text-primary/80 sm:text-3xl">
+            Una mirada hacia aquello que estás viviendo.
+          </p>
+        </Reveal>
+
+        <Reveal
+          variant="scale"
+          delay={120}
+          className="ml-auto w-4/5 sm:w-3/5 lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1 lg:mt-24 lg:w-full"
+        >
+          <figure className="relative aspect-[2/3] overflow-hidden rounded-md bg-primary shadow-[0_30px_60px_-30px_rgba(17,16,15,0.55)]">
+            <Image
+              src="/images/psicotarot-cartas-diario.jpg"
+              alt="Cartas de Tarot y un diario de reflexión abierto junto a una ventana nocturna, en un interior sobrio e iluminado con luz tenue"
+              fill
+              sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, 30vw"
+              className="object-cover"
+            />
+            <span aria-hidden className="pointer-events-none absolute inset-3 rounded-[3px] border border-surface/30" />
+          </figure>
+        </Reveal>
+
+        <Reveal delay={200} className="lg:col-span-5 lg:col-start-2 lg:row-start-2">
+          <div className="flex flex-col gap-10">
+            <p className="max-w-lg text-ink-muted text-body">
+              Comprender tu presente a través del lenguaje simbólico del Tarot: una herramienta de
+              reflexión y autoconocimiento que permite explorar situaciones, emociones y procesos
+              personales desde una nueva perspectiva.
+            </p>
+
+            <div>
+              <p className="text-sm font-semibold text-primary">Durante una consulta puedes explorar</p>
+              <ul className="mt-4 grid grid-cols-1 border-t border-primary/15 sm:grid-cols-2 sm:gap-x-8">
+                {AREAS.map((area) => (
+                  <li key={area} className="border-b border-primary/15 py-3 font-heading text-lg text-primary">
+                    {area}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <TextLink href="#consulta">Solicitar una consulta de Psicotarot</TextLink>
+          </div>
+        </Reveal>
       </div>
-    </section>
+    </article>
   );
 }

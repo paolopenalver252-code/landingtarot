@@ -46,7 +46,7 @@ export default function Differential() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(185,154,99,0.14),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(169,148,104,0.14),transparent_60%)]"
       />
       <Watermark className="-bottom-24 -left-10 z-0" />
 

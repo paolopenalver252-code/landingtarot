@@ -18,7 +18,7 @@ type GradientTextProps = {
 export default function GradientText({
   children,
   className = "",
-  colors = ["#8A7042", "#B99A63", "#F0EBE1", "#B99A63"],
+  colors = ["#8B7955", "#A99468", "#E9E2D6", "#A99468"],
   duration = 2.2,
 }: GradientTextProps) {
   const progress = useMotionValue(0);

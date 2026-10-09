@@ -6,31 +6,42 @@
  * Cualquier componente nuevo debe consumir estos tokens en lugar de valores sueltos.
  */
 :root {
-  /* Color — paleta editorial refinada (segunda pasada de dirección
-     artística): marfil cálido + azul noche/petróleo + dorado champagne
-     como único acento. Sustituye al navy/dorado más saturados de la
-     primera versión; la relación entre tokens (accent-text accesible,
-     mist translúcido sobre fondo oscuro, etc.) se mantiene igual. */
-  --color-primary: #101a27; /* azul noche */
-  --color-secondary: #183a4a; /* azul petróleo */
-  --color-accent: #b99a63; /* dorado champagne — SOLO como acento puntual */
-  --color-accent-hover: #c9ad7c;
-  /* Variante accesible del dorado — SOLO para texto y fondos de botón con
-     texto encima sobre fondo claro (el dorado champagne decorativo no
-     cumple 4.5:1 de WCAG AA en esos usos). El dorado decorativo no cambia. */
-  --color-accent-text: #8a7042;
-  --color-accent-text-hover: #6f5934;
-  --color-surface: #f7f5f0; /* marfil cálido */
-  --color-surface-alt: #f0ebe1;
-  --color-ink: #17202a;
-  /* Texto secundario (párrafos, descripciones, tarjetas) sobre fondo claro. */
-  --color-ink-muted: #68717a;
-  /* Texto terciario (microtexto, labels bajo cifras, roles, notas breves)
-     sobre fondo claro: un peldaño más discreto que ink-muted. */
-  --color-ink-subtle: #838b92;
-  /* Equivalentes sobre fondo navy (bg-primary/bg-secondary): blanco
+  /* Color — tercera pasada de dirección artística: lujo discreto, editorial
+     y cálido en vez del azul noche/dorado champagne anterior. Obsidiana +
+     marrón profundo como oscuros de marca, marfil + beige cálido como
+     claros, oro apagado como único acento (nunca en grandes superficies).
+     La relación entre tokens (accent-text accesible, mist translúcido
+     sobre fondo oscuro, etc.) se mantiene igual que en la pasada anterior. */
+  --color-primary: #11100f; /* obsidiana */
+  --color-secondary: #29231e; /* marrón profundo */
+  --color-accent: #a99468; /* oro apagado — SOLO como acento puntual */
+  --color-accent-hover: #bdac85;
+  /* Variante accesible del oro — SOLO para texto y fondos de botón con
+     texto encima sobre fondo claro (el oro apagado decorativo no cumple
+     4.5:1 de WCAG AA en esos usos). Calculada para cumplir 4.5:1 tanto
+     sobre surface como sobre el surface-alt, más oscuro (beige cálido) —
+     ver nota de surface-alt más abajo. El oro decorativo no cambia. */
+  --color-accent-text: #5a4e37;
+  --color-accent-text-hover: #463d2b;
+  --color-surface: #e9e2d6; /* marfil */
+  /* Beige cálido — bandas de sección más ricas que surface. Notablemente
+     más oscuro que el marfil (a diferencia de la pasada anterior, donde
+     surface-alt era casi idéntico a surface), así que cualquier texto que
+     pueda aparecer sobre CUALQUIERA de los dos fondos claros (ink-muted,
+     accent-text) está calculado para cumplir 4.5:1 contra este tono, el
+     más exigente de los dos. */
+  --color-surface-alt: #cfc1aa;
+  --color-ink: #1c1812;
+  /* Texto secundario (párrafos, descripciones, tarjetas) sobre fondo claro
+     — cumple 4.5:1 tanto sobre surface como sobre surface-alt. */
+  --color-ink-muted: #574f45;
+  /* Texto terciario (microtexto, labels bajo cifras, roles, notas breves):
+     un peldaño más discreto que ink-muted. Cumple 4.5:1 solo sobre
+     surface — no usar sobre surface-alt (ahí, usar ink-muted). */
+  --color-ink-subtle: #6c6458;
+  /* Equivalentes sobre fondo oscuro (bg-primary/bg-secondary): blanco
      traslúcido, con suficiente opacidad para que el texto respire con
-     presencia real sobre el azul profundo. */
+     presencia real sobre el oscuro profundo. */
   --color-mist: rgba(255, 255, 255, 0.92);
   --color-mist-subtle: rgba(255, 255, 255, 0.76);
 
@@ -122,6 +133,24 @@ h6 {
 [data-reveal="hidden"][data-reveal-variant="scale"] {
   opacity: 0;
   transform: scale(0.94) translateY(16px);
+}
+
+/* Entrada breve de contenido que aparece por acción del usuario (cambio de
+   oráculo, "ver todas las preguntas"). La regla de reduced-motion de abajo
+   la vuelve instantánea. */
+@keyframes oracle-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-oracle-in {
+  animation: oracle-fade-in 450ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 /* Foco de teclado consistente con la identidad de marca — sustituye el

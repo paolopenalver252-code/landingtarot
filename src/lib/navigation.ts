@@ -12,7 +12,7 @@ export type NavItem = {
 export const LANDING_NAV_ITEMS: NavItem[] = [
   { label: "Psicotarot", href: "#psicotarot" },
   { label: "Astrología", href: "#astrologia" },
-  { label: "La experiencia", href: "#experiencia" },
+  { label: "Cómo funciona", href: "#como-funciona" },
 ];
 
 /**

@@ -20,7 +20,7 @@ export default function ClosingQuote({
     <section className="relative overflow-hidden bg-primary py-32 lg:py-48">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(185,154,99,0.14),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(169,148,104,0.14),transparent_60%)]"
       />
       <Watermark className="-bottom-20 -right-10 z-0" />
       <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-8 px-6 text-center lg:px-8">

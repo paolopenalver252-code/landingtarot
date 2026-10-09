@@ -27,6 +27,9 @@ export default function Footer() {
           <span className="mt-2 font-heading text-sm italic text-accent">
             Psicotarot &amp; Astrología Cabalística
           </span>
+          <span className="mt-4 max-w-xs text-sm leading-relaxed text-mist text-body">
+            Una nueva forma de mirar hacia dentro.
+          </span>
         </div>
 
         <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm">

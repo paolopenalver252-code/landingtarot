@@ -13,8 +13,10 @@ const labelClass = "text-xs font-medium uppercase tracking-wide text-mist-subtle
 function handleSubmit(event: FormEvent<HTMLFormElement>) {
   event.preventDefault();
   // TODO: conectar con el sistema real de envío del formulario (API route
-  // propia, Formspree, un CRM, etc.). De momento no se envían datos a
-  // ningún sitio — es solo la interfaz, tal como se pidió.
+  // propia, Formspree, un servicio de email transaccional, etc.) — pendiente
+  // de que el cliente confirme a dónde debe llegar cada solicitud. Hasta
+  // entonces no se envían datos a ningún sitio, y a propósito sin ningún
+  // aviso técnico visible para quien rellena el formulario.
 }
 
 /**
@@ -30,7 +32,7 @@ export default function Consulta() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(185,154,99,0.15),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(169,148,104,0.15),transparent_60%)]"
       />
       <Watermark className="-bottom-20 -right-10 z-0" />
 
@@ -38,13 +40,12 @@ export default function Consulta() {
         <div className="flex flex-col items-center gap-6">
           <Reveal>
             <h2 className="font-heading text-3xl leading-tight text-white sm:text-4xl lg:text-5xl">
-              Empieza por conocerte desde otra perspectiva.
+              ¿Sientes que necesitas mirar tu situación desde otra perspectiva?
             </h2>
           </Reveal>
           <Reveal delay={100}>
             <p className="max-w-xl text-base leading-relaxed text-mist text-body">
-              Si sientes que es el momento de explorar tu proceso con mayor profundidad, puedes
-              solicitar una consulta de Psicotarot y Astrología Cabalística.
+              Un espacio para detenerte, observar y comprender.
             </p>
           </Reveal>
         </div>
@@ -96,11 +97,6 @@ export default function Consulta() {
               <Button type="submit" variant="accent" size="md">
                 Solicitar consulta
               </Button>
-              {/* Nota visible a propósito: deja claro que la integración de
-                  envío todavía está pendiente de conectar. */}
-              <p className="text-xs leading-relaxed text-mist-subtle">
-                Formulario listo para conectarse al sistema de envío definitivo.
-              </p>
             </div>
           </form>
         </Reveal>

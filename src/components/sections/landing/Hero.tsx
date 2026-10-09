@@ -6,7 +6,6 @@ import Link from "next/link";
 import { animate } from "animejs";
 import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
-import TrueFocus from "@/components/reactbits/TrueFocus";
 import Magnet from "@/components/reactbits/Magnet";
 import GlareHover from "@/components/reactbits/GlareHover";
 import { playEntranceTimeline } from "@/lib/motion/timeline";
@@ -16,8 +15,11 @@ import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 /**
  * Hero cinematográfico a pantalla completa: la fotografía ocupa todo el
  * ancho y alto del Hero (no una columna), con el texto centrado encima
- * sobre un degradado navy que garantiza contraste — en vez de la
- * composición partida texto/imagen.
+ * sobre un degradado oscuro que garantiza contraste — en vez de la
+ * composición partida texto/imagen. El mensaje "No se trata de saber qué
+ * ocurrirá / Se trata de comprender lo que está ocurriendo" vive ahora en
+ * su propia sección (ver Approach.tsx) en vez de competir aquí con el
+ * titular principal.
  */
 export default function Hero() {
   const imageWrapRef = useRef<HTMLDivElement>(null);
@@ -25,13 +27,12 @@ export default function Hero() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const eyebrowRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const phraseRef = useRef<HTMLParagraphElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollCueRef = useRef<HTMLAnchorElement>(null);
   const scrollLineRef = useRef<HTMLSpanElement>(null);
 
-  // Secuencia de entrada: imagen → overlay → eyebrow → título → frase →
+  // Secuencia de entrada: imagen → overlay → eyebrow → título →
   // descripción → CTA → indicador de scroll, con un ligero solape entre pasos.
   useIsomorphicLayoutEffect(() => {
     playEntranceTimeline([
@@ -39,7 +40,6 @@ export default function Hero() {
       { target: overlayRef.current, translateY: 0, duration: 900, offset: "-=1100" },
       { target: eyebrowRef.current, offset: "-=700" },
       { target: headingRef.current, translateY: 22, duration: 750, offset: "-=500" },
-      { target: phraseRef.current, offset: "-=450" },
       { target: subtitleRef.current, offset: "-=450" },
       { target: ctaRef.current, offset: "-=400" },
       { target: scrollCueRef.current, offset: "-=300" },
@@ -108,63 +108,43 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Overlay navy — el necesario para que el texto blanco tenga contraste
-          claro sobre la fotografía, sin ocultar su detalle. */}
+      {/* Overlay obsidiana — el necesario para que el texto blanco tenga
+          contraste claro sobre la fotografía, sin ocultar su detalle. */}
       <div
         ref={overlayRef}
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(16,26,39,0.5)_0%,rgba(16,26,39,0.6)_45%,rgba(16,26,39,0.85)_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,16,15,0.5)_0%,rgba(17,16,15,0.6)_45%,rgba(17,16,15,0.85)_100%)]"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,transparent_0%,rgba(16,26,39,0.45)_100%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,transparent_0%,rgba(17,16,15,0.45)_100%)]"
       />
 
       <div className="relative z-10 flex flex-col items-center px-6 py-14 text-center sm:px-10 sm:py-20">
-        <div ref={eyebrowRef}>
+        <div ref={eyebrowRef} className="flex flex-col items-center gap-3">
           <Eyebrow tone="dark">PSAI FLOW</Eyebrow>
+          <span className="font-heading text-sm italic text-mist [text-shadow:0_1px_12px_rgba(17,16,15,0.6)] sm:text-base">
+            Psicotarot &middot; Astrología Cabalística
+          </span>
         </div>
 
         <h1
           ref={headingRef}
-          className="mt-5 max-w-3xl font-heading text-4xl leading-[1.1] tracking-tight text-white [text-shadow:0_2px_20px_rgba(16,26,39,0.7)] sm:mt-8 sm:text-5xl lg:text-7xl"
+          className="mt-7 max-w-2xl font-heading text-4xl leading-[1.15] tracking-tight text-white [text-shadow:0_2px_20px_rgba(17,16,15,0.7)] sm:mt-9 sm:text-5xl lg:text-6xl"
         >
-          Psicotarot &amp;
-          <br />
-          Astrología Cabalística
+          Comprender lo que estás viviendo también puede transformar la forma en que lo
+          atraviesas.
         </h1>
 
         <p
-          ref={phraseRef}
-          className="mt-6 max-w-xl font-heading text-lg italic leading-snug text-white [text-shadow:0_2px_16px_rgba(16,26,39,0.7)] sm:mt-9 sm:text-2xl lg:text-3xl"
-        >
-          <TrueFocus
-            segments={[
-              { text: "No se trata de saber " },
-              { text: "qué ocurrirá.", className: "text-white/55" },
-            ]}
-          />
-          <br />
-          <TrueFocus
-            segments={[
-              { text: "Se trata de comprender ", focused: true },
-              {
-                text: "lo que está ocurriendo.",
-                focused: true,
-                className: "text-accent not-italic font-medium",
-              },
-            ]}
-          />
-        </p>
-
-        <p
           ref={subtitleRef}
-          className="mt-4 max-w-md text-sm leading-relaxed text-mist text-body [text-shadow:0_1px_12px_rgba(16,26,39,0.6)] sm:mt-7 sm:text-base"
+          className="mt-6 max-w-md text-sm leading-relaxed text-mist text-body [text-shadow:0_1px_12px_rgba(17,16,15,0.6)] sm:mt-8 sm:text-base"
         >
-          Explora tu proceso, tus ciclos y aquello que estás viviendo desde una nueva perspectiva.
+          Una mirada simbólica y profunda sobre tus procesos, ciclos y momentos de
+          transformación.
         </p>
 
-        <div ref={ctaRef} className="mt-6 sm:mt-10">
+        <div ref={ctaRef} className="mt-8 flex flex-col items-center gap-4 sm:mt-10 sm:flex-row">
           <Magnet padding={50} magnetStrength={16}>
             <GlareHover className="rounded-full">
               <Button href="#consulta" variant="accent" size="md">
@@ -172,6 +152,14 @@ export default function Hero() {
               </Button>
             </GlareHover>
           </Magnet>
+          {/* CTA secundario: estilo propio (no Button ghost/outline, pensados
+              para fondo claro) — texto subrayado discreto sobre la foto. */}
+          <Link
+            href="#como-funciona"
+            className="text-sm font-medium text-mist underline decoration-mist-subtle decoration-1 underline-offset-4 transition-colors duration-300 hover:text-accent hover:decoration-accent"
+          >
+            Descubrir cómo funciona
+          </Link>
         </div>
       </div>
 
