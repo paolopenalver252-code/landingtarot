@@ -4,7 +4,7 @@ import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from "rea
 import Reveal from "@/components/ui/Reveal";
 import OraclePanel from "@/components/oracle/OraclePanel";
 import OracleInvitation from "@/components/oracle/OracleInvitation";
-import type { EvolutionaryOracle } from "@/lib/oracles";
+import { formatCardCount, type EvolutionaryOracle } from "@/lib/oracles";
 
 /**
  * Índice de oráculos (patrón de pestañas WAI-ARIA, con flechas/Inicio/Fin)
@@ -88,7 +88,7 @@ export default function OracleExplorer({
                     >
                       {oracle.name}
                     </span>
-                    <span className="text-sm text-ink-muted">{oracle.cardCount} cartas</span>
+                    <span className="text-sm text-ink-muted">{formatCardCount(oracle.cards)}</span>
                   </span>
                   <span
                     aria-hidden

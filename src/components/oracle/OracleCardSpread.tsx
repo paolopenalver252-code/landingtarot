@@ -9,8 +9,10 @@ import { prefersReducedMotion } from "@/lib/motion/environment";
  * Las cartas del oráculo boca abajo, en una sola fila y sin agrupar: aún no
  * se sabe qué posiciones corresponden a cada fase, así que la composición no
  * debe insinuarlo. Puramente decorativa — el nº de cartas se da en texto.
+ * `ghostCount` añade cartas solo en contorno detrás de las fijas, para
+ * oráculos cuyo nº de cartas varía según la lectura.
  */
-export default function OracleCardSpread({ count }: { count: number }) {
+export default function OracleCardSpread({ count, ghostCount = 0 }: { count: number; ghostCount?: number }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export default function OracleCardSpread({ count }: { count: number }) {
     );
     observer.observe(root);
     return () => observer.disconnect();
-  }, [count]);
+  }, [count, ghostCount]);
 
   return (
     <div ref={ref} aria-hidden className="flex w-full max-w-xl gap-1.5 sm:gap-2.5">
@@ -53,6 +55,13 @@ export default function OracleCardSpread({ count }: { count: number }) {
           <span className="absolute inset-[3px] rounded-[3px] border border-accent/35 sm:inset-1" />
           <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-accent/60 sm:h-2 sm:w-2" />
         </span>
+      ))}
+      {Array.from({ length: ghostCount }, (_, index) => (
+        <span
+          key={`ghost-${index}`}
+          data-card
+          className="aspect-[2/3] flex-1 rounded-[5px] border border-dashed border-primary/30"
+        />
       ))}
     </div>
   );

@@ -11,9 +11,13 @@ export type EvolutionaryOracle = {
   name: string;
   /** Para qué sirve este oráculo, en una frase. */
   objective: string;
-  cardCount: number;
+  /** Nº fijo de cartas, o un rango cuando depende de la lectura. */
+  cards: number | { min: number; max: number };
+  /** Vacío si Zaida no ha definido fases para este oráculo. */
   phases: OraclePhase[];
   questions: string[];
+  /** Qué se lleva la persona al terminar, si está confirmado. */
+  outcome?: string;
 };
 
 /**
@@ -30,7 +34,7 @@ export const EVOLUTIONARY_ORACLES: EvolutionaryOracle[] = [
     name: "Análisis de la situación",
     objective:
       "Obtener un análisis que permita comprender en qué situación te encuentras, detectar qué puede estar faltando y explorar cómo puedes mejorar aquello que te preocupa.",
-    cardCount: 9,
+    cards: 9,
     phases: [
       {
         id: "situacion",
@@ -58,7 +62,27 @@ export const EVOLUTIONARY_ORACLES: EvolutionaryOracle[] = [
       "¿Qué perspectivas se presentan?",
     ],
   },
+  {
+    id: "despertar",
+    number: "02",
+    name: "Despertar",
+    objective:
+      "Despertar tus dones, alinear tus talentos y potenciar todo lo necesario para tu propósito y la toma de decisiones en las distintas áreas de tu vida.",
+    cards: { min: 3, max: 22 },
+    phases: [],
+    questions: [
+      "¿Cómo estoy energéticamente?",
+      "¿Qué energía se aproxima?",
+      "¿Cuál es el camino para empezar a crecer en aquello que me preocupa?",
+    ],
+    outcome:
+      "Una lectura grabada para que puedas verla con calma y entender con más claridad tu energía actual, lo que tienes en contra y lo que tienes a tu favor para gestionar mejor la situación que te preocupa.",
+  },
 ];
+
+export function formatCardCount(cards: EvolutionaryOracle["cards"]): string {
+  return typeof cards === "number" ? `${cards} cartas` : `De ${cards.min} a ${cards.max} cartas`;
+}
 
 export function buildOracleWhatsAppMessage(oracle: EvolutionaryOracle, situation: string): string {
   const intro = `Hola, me gustaría solicitar una consulta del Oráculo Evolutivo «${oracle.number} — ${oracle.name}».`;
