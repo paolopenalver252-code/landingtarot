@@ -24,7 +24,13 @@ export const SITE_URL = resolveEnvUrl(
   "https://TU-DOMINIO-PENDIENTE.vercel.app"
 );
 
-export const SITE_NAME = "PSAI FLOW ACADEMY";
+export const SITE_NAME = "Oráculo Despertar";
+
+/** Complemento del nombre en el <title> de la home y en la imagen Open Graph. */
+export const SITE_TAGLINE = "Lecturas para la reflexión personal";
+
+export const SITE_DESCRIPTION =
+  "Una lectura personalizada de 3 a 22 cartas u oráculos para reflexionar sobre tu momento, reconocer tus talentos y valorar tus decisiones. Incluye la grabación.";
 
 export const DEFAULT_LOCALE = "es_ES";
 
@@ -44,6 +50,9 @@ type PageMetadataInput = {
  */
 export function buildPageMetadata({ title, description, path, keywords, noIndex }: PageMetadataInput): Metadata {
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
+  // El <title> ya recibe el nombre por la plantilla del layout; Open Graph y
+  // Twitter no la heredan, así que se compone aquí.
+  const socialTitle = `${title} | ${SITE_NAME}`;
 
   return {
     title,
@@ -56,7 +65,7 @@ export function buildPageMetadata({ title, description, path, keywords, noIndex 
       ? { index: false, follow: false }
       : { index: true, follow: true },
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       url,
       siteName: SITE_NAME,
@@ -65,7 +74,7 @@ export function buildPageMetadata({ title, description, path, keywords, noIndex 
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: socialTitle,
       description,
     },
   };

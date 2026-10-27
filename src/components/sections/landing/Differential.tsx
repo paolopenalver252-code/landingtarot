@@ -10,9 +10,9 @@ import { easeOut } from "@/lib/motion/tokens";
 import { prefersReducedMotion } from "@/lib/motion/environment";
 
 /**
- * Composición editorial (no dos tarjetas ni un "VS"): los dos nombres
- * aparecen separados y se aproximan ligeramente al entrar en viewport —
- * "dos herramientas → una visión", sin sensación de competición.
+ * Composición editorial (no dos tarjetas ni un "VS"): las dos palabras
+ * aparecen separadas y se aproximan ligeramente al entrar en viewport —
+ * "de tus preguntas → a tus decisiones", sin sensación de competición.
  */
 export default function Differential() {
   const leftRef = useRef<HTMLSpanElement>(null);
@@ -41,7 +41,7 @@ export default function Differential() {
 
   return (
     <section
-      id="dos-lenguajes"
+      id="de-preguntas-a-decisiones"
       className="relative scroll-mt-24 overflow-hidden bg-primary py-28 lg:py-40"
     >
       <div
@@ -53,8 +53,8 @@ export default function Differential() {
       <div className="relative mx-auto max-w-4xl px-6 text-center lg:px-8">
         <Reveal>
           <SectionHeading
-            eyebrow="La combinación"
-            title="Dos lenguajes. Una visión más profunda de ti."
+            eyebrow="El sentido de la lectura"
+            title="Una lectura que no decide por ti."
             tone="dark"
           />
         </Reveal>
@@ -65,7 +65,7 @@ export default function Differential() {
               ref={leftRef}
               className="inline-block font-heading text-2xl uppercase tracking-[0.2em] text-white sm:text-3xl"
             >
-              Psicotarot
+              Tus preguntas
             </span>
           </Reveal>
 
@@ -78,22 +78,22 @@ export default function Differential() {
               ref={rightRef}
               className="inline-block font-heading text-2xl uppercase tracking-[0.2em] text-white sm:text-3xl"
             >
-              Astrología Cabalística
+              Tus decisiones
             </span>
           </Reveal>
 
           <Reveal delay={350}>
             <p className="mt-8 font-heading text-3xl italic sm:text-4xl">
-              <GradientText>Una mirada más profunda.</GradientText>
+              <GradientText>Una mirada más clara.</GradientText>
             </p>
           </Reveal>
         </div>
 
         <Reveal delay={450}>
           <p className="mx-auto mt-16 max-w-2xl text-center text-base leading-relaxed text-mist text-body">
-            Cuando ambas miradas se complementan, permiten observar una experiencia personal
-            desde diferentes ángulos: lo que estás viviendo, cómo lo interpretas y qué patrones
-            pueden estar presentes en tu proceso.
+            Te ayuda a reflexionar sobre lo que te preguntas, explorar alternativas y reconocer
+            los recursos con los que cuentas, para valorar con más claridad el camino que quieres
+            tomar.
           </p>
         </Reveal>
       </div>

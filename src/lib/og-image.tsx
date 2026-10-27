@@ -1,12 +1,13 @@
 import { ImageResponse } from "next/og";
+import { SITE_NAME } from "@/lib/seo";
 
 export const OG_IMAGE_SIZE = { width: 1200, height: 630 };
 
 /**
  * Plantilla de imagen Open Graph/Twitter Card — identidad obsidiana + oro
- * apagado de PSAI FLOW ACADEMY, sin depender de fotografía real.
+ * apagado de la landing, sin depender de fotografía real.
  */
-export function renderOgImage(title: string, eyebrow: string = "PSAI FLOW ACADEMY") {
+export function renderOgImage(title: string, eyebrow: string = SITE_NAME) {
   return new ImageResponse(
     (
       <div

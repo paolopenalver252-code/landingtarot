@@ -95,7 +95,7 @@ export default function Consulta() {
 
             <div className="mt-2 flex flex-col items-center gap-3">
               <Button type="submit" variant="accent" size="md">
-                Solicitar consulta
+                Solicitar mi lectura
               </Button>
             </div>
           </form>

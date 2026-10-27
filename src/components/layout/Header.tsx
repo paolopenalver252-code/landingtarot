@@ -6,8 +6,7 @@ import { LANDING_NAV_ITEMS } from "@/lib/navigation";
 import Button from "@/components/ui/Button";
 
 /**
- * Header propio de esta landing — NO es la navegación corporativa de PSAI
- * FLOW ACADEMY. Solo tres anchors hacia las secciones de esta misma página
+ * Header propio de esta landing. Solo tres anchors hacia las secciones de esta misma página
  * más el CTA de conversión; nada enlaza fuera de aquí. Al ser anchors (no
  * rutas), el pathname nunca cambia al navegar, así que el menú móvil se
  * cierra explícitamente en el onClick de cada enlace en vez de depender de
@@ -40,15 +39,15 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between gap-6 px-6 lg:px-10">
-        {/* Identidad: PSAI FLOW como marca, con el servicio como subtítulo —
-            nunca "PSAI FLOW Academy", que pertenece a la web corporativa. */}
+        {/* Identidad: el nombre del proyecto, con una línea de enfoque como
+            subtítulo. Sin nombre personal ni marca ajena (anonimato). */}
         <Link
           href="/"
           className="flex shrink-0 flex-col leading-none transition-opacity duration-300 hover:opacity-75"
         >
-          <span className="font-heading text-2xl text-primary">PSAI FLOW</span>
+          <span className="font-heading text-2xl text-primary">Oráculo Despertar</span>
           <span className="mt-1 font-heading text-[0.7rem] italic leading-snug text-accent-text">
-            Psicotarot &amp; Astrología Cabalística
+            Lecturas para la reflexión personal
           </span>
         </Link>
 
@@ -69,7 +68,7 @@ export default function Header() {
 
         <div className="hidden shrink-0 lg:block">
           <Button href="#consulta" variant="accent" size="sm">
-            Solicitar consulta
+            Solicitar lectura
           </Button>
         </div>
 
@@ -123,7 +122,7 @@ export default function Header() {
           </ul>
           <div className="mt-6">
             <Button href="#consulta" variant="accent" size="sm" className="w-full" onClick={closeMenu}>
-              Solicitar consulta
+              Solicitar lectura
             </Button>
           </div>
         </nav>

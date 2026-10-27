@@ -20,8 +20,8 @@ type PlaceholderImageProps = {
    * coincidir con contenido de texto superpuesto. */
   labelPosition?: "center" | "corner";
   /** Por defecto true. Desactivar para composiciones editoriales a sangre
-   * (sin esquinas redondeadas ni marco), como los bloques de imagen de
-   * Psicotarot/Astrología Cabalística. */
+   * (sin esquinas redondeadas ni marco), como los bloques de imagen de los
+   * capítulos 01/02 de la presentación. */
   rounded?: boolean;
 };
 

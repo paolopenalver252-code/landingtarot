@@ -1,14 +1,11 @@
-# Psicotarot & Astrología Cabalística — Landing
+# Oráculo Despertar — Landing
 
-Landing independiente de **Psicotarot y Astrología Cabalística**, una
-especialidad de **PSAI FLOW ACADEMY**. Separada del proyecto principal de la
-web (`web mamaa`) para poder desplegarse por su cuenta en Vercel, sin
-depender de ese repositorio.
+Landing independiente de **Oráculo Despertar**: lecturas personalizadas
+(de 3 a 22 cartas u oráculos) orientadas a la reflexión personal, el
+autoconocimiento y la toma de decisiones, con entrega de la lectura grabada.
 
-No es un proyecto nuevo desde cero: reproduce con la máxima fidelidad
-posible la landing tal y como existía dentro del proyecto principal —
-mismos componentes, mismos estilos, mismas animaciones, mismo contenido.
-No se ha rediseñado nada en esta separación.
+El proyecto es independiente y anónimo: la web no muestra el nombre personal
+de la clienta ni enlaza con ninguna otra marca.
 
 ## Stack
 
@@ -24,7 +21,7 @@ npm install
 npm run dev
 ```
 
-Abre `http://localhost:3000` (la landing vive en la raíz `/`, no en `/psicotarot...`).
+Abre `http://localhost:3000` (la landing vive en la raíz `/`).
 
 ## Build
 
@@ -39,47 +36,29 @@ Copia `.env.example` a `.env.local` y ajusta si hace falta:
 
 | Variable | Para qué sirve | Valor por defecto |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Dominio de **esta** landing (canonical, sitemap, robots, Open Graph, `metadataBase`). Actualízalo en cuanto exista el dominio definitivo. | Placeholder claramente marcado (`TU-DOMINIO-PENDIENTE.vercel.app`) |
-| `NEXT_PUBLIC_MAIN_SITE_URL` | Dominio de la web principal de PSAI FLOW ACADEMY. Esta landing ya no tiene páginas como `/consultas` o `/contacto`, así que el Header, el Footer y los botones de CTA enlazan de vuelta ahí. | `https://www.psaiflowacademy.com` (mismo placeholder que ya usa el proyecto principal mientras se confirma el dominio real) |
+| `NEXT_PUBLIC_SITE_URL` | Dominio de esta landing (canonical, sitemap, robots, Open Graph, `metadataBase`). Actualízalo en cuanto exista el dominio definitivo. | Placeholder claramente marcado (`TU-DOMINIO-PENDIENTE.vercel.app`) |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Número de WhatsApp de contacto (formato internacional, solo dígitos). Sin él, los CTA de WhatsApp llevan a la sección `#consulta`. | Vacío |
 
-No hace falta configurarlas para que `npm run build` funcione: sin ellas, la
-app usa los valores por defecto de arriba.
+No hace falta configurarlas para que `npm run build` funcione.
 
 ## Despliegue en Vercel
 
-1. Crea un nuevo proyecto en Vercel apuntando a este directorio (repo propio
-   o subcarpeta, según cómo lo subas).
+1. Crea un nuevo proyecto en Vercel apuntando a este repositorio.
 2. Framework preset: **Next.js** (autodetectado).
-3. En "Environment Variables" del proyecto en Vercel, define:
-   - `NEXT_PUBLIC_SITE_URL` → el dominio final que le asignes a esta landing.
-   - `NEXT_PUBLIC_MAIN_SITE_URL` → el dominio real de la web principal, si
-     cambia respecto al placeholder actual.
-4. Deploy. No requiere ninguna otra configuración (no hay base de datos,
-   backend propio ni integraciones externas).
+3. En "Environment Variables" define `NEXT_PUBLIC_SITE_URL` (y, cuando exista,
+   `NEXT_PUBLIC_WHATSAPP_NUMBER`).
+4. Deploy. No hay base de datos, backend propio ni integraciones externas.
 
-## Qué contiene y qué no
+## Contenido
 
-Contiene únicamente lo que esta landing necesita: sus 7 secciones, el
-Header/Footer de marca, los componentes de UI compartidos que usa
-(`Button`, `Reveal`, `SectionHeading`, etc.) y el sistema de motion
-(Anime.js). No incluye páginas, componentes ni datos (cursos, libros...) del
-resto de PSAI FLOW ACADEMY — eso sigue viviendo en el proyecto principal.
-
-## Enlaces hacia la web principal
-
-Como esta landing es ahora un sitio independiente, todo lo que antes era una
-ruta interna del sitio principal (navegación del Header/Footer, "Volver a
-las especialidades", los CTA de "Solicitar consulta"/"Contactar") ahora
-apunta con URL absoluta a `NEXT_PUBLIC_MAIN_SITE_URL` + esa misma ruta
-(`@/lib/seo`, función `mainSiteUrl`). Son exactamente los mismos destinos
-que ya existían — no se ha inventado ninguna URL nueva.
+Todo el contenido del oráculo (objetivo, rango de cartas, preguntas y qué se
+entrega) vive en `src/lib/oracle.ts`. Solo contiene lo confirmado por la
+clienta: no se inventan nombres de cartas, duración, precios ni credenciales.
 
 ## Pendiente de contenido definitivo
 
-- Fotografía real de Tarot y de carta astral (hay placeholders discretos
-  marcados como "pendiente" en `Psicotarot.tsx` y `AstrologiaCabalistica.tsx`).
 - Dominio definitivo de esta landing (`NEXT_PUBLIC_SITE_URL`).
-- Redes sociales del Footer (ya eran un placeholder `#` en el proyecto
-  original, sin cambios).
-- Datos de contacto y descripción breve del Footer (ídem, ya pendientes en
-  el proyecto original).
+- Número de WhatsApp (`NEXT_PUBLIC_WHATSAPP_NUMBER`) y destino del formulario
+  de `#consulta` (hoy no envía datos a ningún sitio).
+- Redes sociales del Footer (ocultas hasta que haya perfiles propios).
+- Datos del titular en las páginas legales (marcados como `[Completar]`).

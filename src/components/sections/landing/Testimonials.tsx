@@ -5,7 +5,7 @@ export type Testimonial = {
   quote: string;
   /** Nombre real de la persona, o sus iniciales si pide mantener el anonimato. Nunca inventado. */
   name: string;
-  /** Opcional — p. ej. "Consulta de Psicotarot". Nunca inventado. */
+  /** Opcional — p. ej. "Lectura del Oráculo Despertar". Nunca inventado. */
   context?: string;
 };
 
@@ -28,7 +28,7 @@ export default function Testimonials({ items }: TestimonialsProps) {
     <section className="scroll-mt-24 bg-surface py-28 lg:py-40">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal>
-          <SectionHeading eyebrow="Testimonios" title="Lo que cuentan quienes ya han pasado por una consulta." />
+          <SectionHeading eyebrow="Testimonios" title="Lo que cuentan quienes ya han vivido su lectura." />
         </Reveal>
 
         <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

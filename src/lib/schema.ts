@@ -1,37 +1,23 @@
-import { SITE_NAME, SITE_URL } from "@/lib/seo";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 /**
  * Generadores de JSON-LD (Schema.org) de esta landing independiente.
- * Regla estricta heredada del proyecto principal: solo se incluyen campos
- * con datos reales y confirmados. Nunca se rellenan teléfono, redes
+ * Regla estricta: solo se incluyen campos con datos reales y confirmados. Nunca se rellenan teléfono, redes
  * sociales, precios, valoraciones o reseñas con datos de relleno — Google
  * penaliza el marcado con datos ficticios, y va contra la norma del
- * proyecto de no inventar información.
+ * proyecto de no inventar información. La clienta mantiene el anonimato:
+ * tampoco hay fundador, persona, dirección ni ubicación.
  */
 
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 
 export function organizationSchema() {
   return {
-    "@type": "EducationalOrganization",
+    "@type": "Organization",
     "@id": ORGANIZATION_ID,
     name: SITE_NAME,
     url: SITE_URL,
-    description:
-      "Academia Internacional de Psicotransformación Integral, creadora del Método PSAI FLOW®.",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Mallorca",
-      addressCountry: "ES",
-    },
-    areaServed: {
-      "@type": "Place",
-      name: "Internacional (atención online)",
-    },
-    founder: {
-      "@type": "Person",
-      name: "Solimar Rengel",
-    },
+    description: SITE_DESCRIPTION,
   };
 }
 

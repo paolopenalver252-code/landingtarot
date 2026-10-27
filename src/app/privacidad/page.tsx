@@ -31,15 +31,15 @@ export default function PrivacidadPage() {
 
       <h2>2. ¿Qué datos se recogen?</h2>
       <p>
-        A través del formulario de solicitud de consulta se recogen únicamente los datos que
+        A través del formulario de solicitud de lectura se recogen únicamente los datos que
         facilitas voluntariamente: nombre, dirección de correo electrónico y el contenido del
         mensaje que escribas.
       </p>
 
       <h2>3. ¿Con qué finalidad se tratan tus datos?</h2>
       <ul>
-        <li>Responder a tu solicitud de consulta e información.</li>
-        <li>Gestionar la comunicación necesaria para concretar la cita o resolver tu consulta.</li>
+        <li>Responder a tu solicitud de lectura e información.</li>
+        <li>Gestionar la comunicación necesaria para concretar la cita o resolver tus dudas.</li>
       </ul>
       <p>No se utilizan tus datos para ninguna finalidad distinta de la indicada.</p>
 

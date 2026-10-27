@@ -4,12 +4,12 @@ type WatermarkProps = {
 };
 
 /**
- * Textura de marca sutil para secciones oscuras: la palabra "PSAI" a gran
+ * Textura de marca sutil para secciones oscuras: la palabra "Despertar" a gran
  * escala, casi invisible, recortada por el overflow-hidden de la sección
  * contenedora. Puramente decorativa — nunca debe llevar significado, por eso
  * queda oculta a lectores de pantalla.
  */
-export default function Watermark({ text = "PSAI", className = "" }: WatermarkProps) {
+export default function Watermark({ text = "Despertar", className = "" }: WatermarkProps) {
   return (
     <span
       aria-hidden

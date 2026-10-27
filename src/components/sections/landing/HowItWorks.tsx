@@ -9,20 +9,20 @@ import { prefersReducedMotion } from "@/lib/motion/environment";
 
 const STEPS = [
   {
-    title: "Solicitas tu consulta",
-    description: "Pides tu consulta y encontramos el espacio adecuado para ti.",
+    title: "Solicitas tu lectura",
+    description: "Nos escribes y encontramos el momento adecuado para ti.",
   },
   {
-    title: "Compartes tu proceso",
-    description: "Compartes aquello que quieres explorar o comprender mejor.",
+    title: "Compartes lo que te preocupa",
+    description: "Cuentas aquello que quieres comprender o mejorar.",
   },
   {
-    title: "Realizamos la sesión",
-    description: "Durante la sesión se profundiza en aquello que quieres comprender.",
+    title: "Realizamos la lectura",
+    description: "Con entre 3 y 22 cartas u oráculos, en diálogo contigo.",
   },
   {
-    title: "Nueva perspectiva",
-    description: "Te llevas una nueva perspectiva sobre tu proceso.",
+    title: "Recibes tu grabación",
+    description: "Te llevas tu lectura grabada para volver a verla con calma.",
   },
 ];
 
@@ -66,7 +66,7 @@ export default function HowItWorks() {
     <section id="como-funciona" className="scroll-mt-24 bg-surface-alt pb-28 pt-40 lg:pb-40 lg:pt-56">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal>
-          <SectionHeading title="Una consulta. Un espacio para ti." />
+          <SectionHeading title="Una lectura. Un espacio para ti." />
         </Reveal>
 
         {/* 4 pasos: el salto a fila se retrasa hasta lg (antes sm, con 3

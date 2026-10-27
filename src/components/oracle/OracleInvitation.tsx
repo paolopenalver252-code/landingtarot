@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import Button from "@/components/ui/Button";
-import { buildOracleWhatsAppMessage, type EvolutionaryOracle } from "@/lib/oracles";
+import { buildOracleWhatsAppMessage, type Oracle } from "@/lib/oracle";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 const MAX_LENGTH = 600;
@@ -13,7 +13,7 @@ const MAX_LENGTH = 600;
  * nada se guarda ni se envía desde esta web. Sin número configurado no se
  * muestra el campo (no tendría a dónde ir) y el CTA lleva a #consulta.
  */
-export default function OracleInvitation({ oracle }: { oracle: EvolutionaryOracle }) {
+export default function OracleInvitation({ oracle }: { oracle: Oracle }) {
   const [situation, setSituation] = useState("");
   const fieldId = useId();
   const hintId = useId();
@@ -27,7 +27,7 @@ export default function OracleInvitation({ oracle }: { oracle: EvolutionaryOracl
         <>
           <p className="mt-4 max-w-lg text-ink-muted text-body">
             Si quieres, escribe aquello que te gustaría analizar. Llegará incluido en tu mensaje y
-            será el punto de partida de la consulta.
+            será el punto de partida de tu lectura.
           </p>
           <label htmlFor={fieldId} className="mt-8 block text-sm font-medium text-primary">
             ¿Qué situación quieres explorar? <span className="font-normal text-ink-muted">(opcional)</span>
@@ -56,11 +56,11 @@ export default function OracleInvitation({ oracle }: { oracle: EvolutionaryOracl
         <>
           <p className="mt-4 max-w-lg text-ink-muted text-body">
             Cuéntanos qué situación te gustaría explorar y buscaremos el momento adecuado para tu
-            consulta.
+            lectura.
           </p>
           <div className="mt-8">
             <Button href="#consulta" variant="accent" size="md">
-              Solicitar consulta
+              Solicitar mi lectura
             </Button>
           </div>
         </>

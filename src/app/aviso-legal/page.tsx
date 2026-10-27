@@ -13,9 +13,9 @@ export default function AvisoLegalPage() {
   return (
     <LegalPage title="Aviso legal" updated="[completar fecha]">
       <p>
-        El presente aviso legal regula el uso del sitio web de Psicotarot &amp; Astrología
-        Cabalística (en adelante, &ldquo;el sitio web&rdquo;), del que es titular la persona o
-        entidad identificada a continuación.
+        El presente aviso legal regula el uso del sitio web de Oráculo Despertar (en adelante,
+        &ldquo;el sitio web&rdquo;), del que es titular la persona o entidad identificada a
+        continuación.
       </p>
 
       <h2>1. Datos del titular</h2>
@@ -31,9 +31,9 @@ export default function AvisoLegalPage() {
 
       <h2>2. Objeto</h2>
       <p>
-        A través de este sitio web se ofrece información sobre los servicios de Psicotarot y
-        Astrología Cabalística, así como un formulario de contacto para solicitar una consulta. El
-        sitio web no tramita pagos ni reservas de forma automatizada.
+        A través de este sitio web se ofrece información sobre las lecturas del Oráculo Despertar,
+        así como un formulario de contacto para solicitarlas. El sitio web no tramita pagos ni
+        reservas de forma automatizada.
       </p>
 
       <h2>3. Condiciones de uso</h2>
@@ -54,10 +54,10 @@ export default function AvisoLegalPage() {
 
       <h2>5. Naturaleza de los servicios ofrecidos</h2>
       <p>
-        El Psicotarot y la Astrología Cabalística se ofrecen como herramientas de reflexión,
-        autoconocimiento y acompañamiento personal, desde una perspectiva simbólica. No constituyen
-        en ningún caso un diagnóstico, tratamiento o sustituto de asesoramiento médico, psicológico,
-        legal o financiero profesional.
+        Las lecturas del Oráculo Despertar se ofrecen como un espacio de reflexión personal y
+        autoconocimiento. No son una práctica de adivinación ni predicen acontecimientos futuros, y
+        no constituyen en ningún caso un diagnóstico, una terapia ni un sustituto de asesoramiento
+        médico, psicológico, legal o financiero profesional.
       </p>
 
       <h2>6. Limitación de responsabilidad</h2>

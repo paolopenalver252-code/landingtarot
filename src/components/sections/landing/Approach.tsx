@@ -2,7 +2,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import Reveal from "@/components/ui/Reveal";
 import TrueFocus from "@/components/reactbits/TrueFocus";
 
-const NOT_THIS = ["Predicciones absolutas", "Respuestas cerradas", "Decisiones tomadas por ti"];
+const NOT_THIS = ["Adivinación", "Respuestas cerradas", "Decisiones tomadas por ti"];
 
 const THIS = ["Reflexión", "Autoconocimiento", "Nuevas perspectivas"];
 
@@ -73,9 +73,9 @@ export default function Approach() {
 
         <Reveal delay={250}>
           <p className="mx-auto mt-16 max-w-xl text-base leading-relaxed text-ink-muted text-body">
-            PSAI FLOW no ofrece respuestas cerradas ni predicciones absolutas: es un espacio de
-            exploración y autoconocimiento, pensado para ayudarte a mirar tu situación desde otra
-            perspectiva.
+            El Oráculo Despertar no predice el futuro ni ofrece respuestas cerradas: es un espacio
+            de diálogo y autoconocimiento, pensado para ayudarte a mirar tu situación desde otra
+            perspectiva y decidir con más claridad.
           </p>
         </Reveal>
       </div>

@@ -3,12 +3,12 @@ import Reveal from "@/components/ui/Reveal";
 import ScrollStack, { ScrollStackItem } from "@/components/reactbits/ScrollStack";
 
 const PROFILES = [
-  "Estás atravesando un cambio importante.",
-  "Quieres comprender mejor una situación personal.",
-  "Buscas conocerte desde una perspectiva diferente.",
-  "Sientes que ciertos patrones se repiten.",
-  "Estás explorando una nueva etapa de tu vida.",
-  "Quieres detenerte y observar tu proceso con mayor profundidad.",
+  "Tienes una decisión delante y quieres valorarla con más claridad.",
+  "Algo te preocupa y no sabes por dónde empezar a crecer.",
+  "Quieres reconocer tus dones y tus talentos.",
+  "Buscas alinear tus recursos con tu propósito.",
+  "Deseas mejorar un área concreta de tu vida.",
+  "Necesitas un espacio para detenerte y escucharte.",
 ];
 
 /**
@@ -29,7 +29,7 @@ export default function ForWhom() {
               align="left"
               eyebrow="¿Para quién puede ser?"
               title="Quizás este sea tu momento para mirar hacia dentro."
-              description="Puede ser especialmente interesante para ti si estás atravesando un momento de cambio, búsqueda o necesidad de claridad."
+              description="Puede ser especialmente interesante para ti si estás ante una decisión, una búsqueda o un momento en el que necesitas claridad."
             />
             <span aria-hidden className="mt-10 block h-16 w-px bg-accent/50" />
           </Reveal>

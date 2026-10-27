@@ -98,11 +98,14 @@ export default function Hero() {
       <div ref={imageWrapRef} className="absolute inset-0 h-full w-full overflow-hidden">
         <div ref={imageInnerRef} className="absolute inset-0 h-full w-full">
           <Image
-            src="/images/psicotarot-hero-editorial.jpg"
-            alt="Cartas de Tarot sobre una mesa de piedra junto a una ventana nocturna, en un interior sobrio e iluminado con luz tenue"
+            src="/images/oraculo-despertar-hero.jpg"
+            alt="Cartas extendidas sobre una mesa de piedra junto a una ventana nocturna, en un interior sobrio iluminado con luz tenue"
             fill
             priority
-            sizes="100vw"
+            // Se sirve el JPG original (1376 px, ~85 KB) sin recomprimir: el
+            // optimizador lo bajaba a calidad 75 y, en pantallas verticales,
+            // pedía una versión más estrecha de la que ocupa con object-cover.
+            unoptimized
             className="object-cover"
           />
         </div>
@@ -122,9 +125,9 @@ export default function Hero() {
 
       <div className="relative z-10 flex flex-col items-center px-6 py-14 text-center sm:px-10 sm:py-20">
         <div ref={eyebrowRef} className="flex flex-col items-center gap-3">
-          <Eyebrow tone="dark">PSAI FLOW</Eyebrow>
+          <Eyebrow tone="dark">Oráculo Despertar</Eyebrow>
           <span className="font-heading text-sm italic text-mist [text-shadow:0_1px_12px_rgba(17,16,15,0.6)] sm:text-base">
-            Psicotarot &middot; Astrología Cabalística
+            Reflexión &middot; Autoconocimiento &middot; Decisiones
           </span>
         </div>
 
@@ -132,23 +135,23 @@ export default function Hero() {
           ref={headingRef}
           className="mt-7 max-w-2xl font-heading text-4xl leading-[1.15] tracking-tight text-white [text-shadow:0_2px_20px_rgba(17,16,15,0.7)] sm:mt-9 sm:text-5xl lg:text-6xl"
         >
-          Comprender lo que estás viviendo también puede transformar la forma en que lo
-          atraviesas.
+          Un espacio para escucharte, reconocer tus recursos y explorar nuevas perspectivas ante
+          tus decisiones.
         </h1>
 
         <p
           ref={subtitleRef}
           className="mt-6 max-w-md text-sm leading-relaxed text-mist text-body [text-shadow:0_1px_12px_rgba(17,16,15,0.6)] sm:mt-8 sm:text-base"
         >
-          Una mirada simbólica y profunda sobre tus procesos, ciclos y momentos de
-          transformación.
+          Una lectura personalizada para reflexionar sobre tu momento actual, reconocer tus
+          talentos y encontrar nuevas formas de abordar aquello que te preocupa.
         </p>
 
         <div ref={ctaRef} className="mt-8 flex flex-col items-center gap-4 sm:mt-10 sm:flex-row">
           <Magnet padding={50} magnetStrength={16}>
             <GlareHover className="rounded-full">
               <Button href="#consulta" variant="accent" size="md">
-                Solicitar consulta
+                Solicitar mi lectura
               </Button>
             </GlareHover>
           </Magnet>
