@@ -40,18 +40,16 @@ export default function Questions() {
           <figure className="relative aspect-square">
             <span aria-hidden className="absolute -inset-3 rounded-full border border-accent-text/30 sm:-inset-5" />
             <div className="relative h-full w-full overflow-hidden rounded-full bg-primary">
-              {/* Encuadre sobre las cartas de la fotografía del Hero, para que
-                  el círculo se lea como un detalle y no como la misma imagen
-                  repetida. El encuadre se hace sobre todo con object-position
-                  y apenas con scale: la foto mide 768 px de alto, y ampliarla
-                  más la deja borrosa en un círculo de ~570 px. JPG original
-                  sin recomprimir (ver Hero.tsx). */}
+              {/* La rueda ya es circular y cuadrada (1254 px): se encaja sin
+                  ampliar, de modo que el recorte coincide con su aro dorado y
+                  solo deja fuera las esquinas. Original sin recomprimir (ver
+                  Hero.tsx) para que el texto de la rueda se lea nítido. */}
               <Image
-                src="/images/oraculo-despertar-hero.jpg"
-                alt="Detalle de varias cartas extendidas sobre una mesa de piedra, con luz tenue"
+                src="/images/oraculo-despertar-rueda.webp"
+                alt="Rueda ilustrada con las doce casas astrológicas y las áreas de la vida que representa cada una"
                 fill
                 unoptimized
-                className="origin-[78%_68%] scale-[1.12] object-cover object-[82%_50%] saturate-[0.8]"
+                className="object-cover"
               />
             </div>
           </figure>

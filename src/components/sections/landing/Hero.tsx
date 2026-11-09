@@ -5,18 +5,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { animate } from "animejs";
 import Button from "@/components/ui/Button";
-import Eyebrow from "@/components/ui/Eyebrow";
 import Magnet from "@/components/reactbits/Magnet";
 import GlareHover from "@/components/reactbits/GlareHover";
 import { playEntranceTimeline } from "@/lib/motion/timeline";
 import { prefersReducedMotion } from "@/lib/motion/environment";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
+import { ORACULO_DESPERTAR } from "@/lib/oracle";
+
+/** Datos concretos del servicio, confirmados por la clienta (ver @/lib/oracle). */
+const HIGHLIGHTS = [
+  "Lectura personalizada",
+  `De ${ORACULO_DESPERTAR.cards.min} a ${ORACULO_DESPERTAR.cards.max} cartas u oráculos`,
+  "Grabada para ti",
+];
 
 /**
  * Hero cinematográfico a pantalla completa: la fotografía ocupa todo el
- * ancho y alto del Hero (no una columna), con el texto centrado encima
- * sobre un degradado oscuro que garantiza contraste — en vez de la
- * composición partida texto/imagen. El mensaje "No se trata de saber qué
+ * ancho y alto del Hero (no una columna), con el texto alineado a la
+ * izquierda sobre un degradado oscuro que garantiza contraste, y las
+ * cartas de la foto visibles a la derecha en escritorio. El mensaje "No se trata de saber qué
  * ocurrirá / Se trata de comprender lo que está ocurriendo" vive ahora en
  * su propia sección (ver Approach.tsx) en vez de competir aquí con el
  * titular principal.
@@ -25,9 +32,9 @@ export default function Hero() {
   const imageWrapRef = useRef<HTMLDivElement>(null);
   const imageInnerRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
-  const eyebrowRef = useRef<HTMLDivElement>(null);
+  const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const subtitleRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollCueRef = useRef<HTMLAnchorElement>(null);
   const scrollLineRef = useRef<HTMLSpanElement>(null);
@@ -111,58 +118,81 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Overlay obsidiana — el necesario para que el texto blanco tenga
-          contraste claro sobre la fotografía, sin ocultar su detalle. */}
+      {/* Overlay obsidiana, ligero: la fotografía debe leerse en todo el
+          Hero (ventana, cortina y cartas), no solo a la derecha. Oscurece lo
+          justo bajo el texto — la zona izquierda de la foto ya es oscura y
+          el texto lleva text-shadow — y funde el borde inferior con la
+          sección siguiente. */}
       <div
         ref={overlayRef}
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,16,15,0.5)_0%,rgba(17,16,15,0.6)_45%,rgba(17,16,15,0.85)_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,16,15,0.35)_0%,rgba(17,16,15,0.45)_45%,rgba(17,16,15,0.8)_100%)] lg:bg-[linear-gradient(90deg,rgba(17,16,15,0.55)_0%,rgba(17,16,15,0.35)_40%,rgba(17,16,15,0.08)_70%,rgba(17,16,15,0.15)_100%)]"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,transparent_0%,rgba(17,16,15,0.45)_100%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,transparent_0%,rgba(17,16,15,0.3)_100%)] lg:bg-[linear-gradient(180deg,rgba(17,16,15,0.2)_0%,transparent_30%,transparent_70%,rgba(17,16,15,0.55)_100%)]"
       />
 
-      <div className="relative z-10 flex flex-col items-center px-6 py-14 text-center sm:px-10 sm:py-20">
-        <div ref={eyebrowRef} className="flex flex-col items-center gap-3">
-          <Eyebrow tone="dark">Oráculo Despertar</Eyebrow>
-          <span className="font-heading text-sm italic text-mist [text-shadow:0_1px_12px_rgba(17,16,15,0.6)] sm:text-base">
-            Reflexión &middot; Autoconocimiento &middot; Decisiones
-          </span>
-        </div>
-
-        <h1
-          ref={headingRef}
-          className="mt-7 max-w-2xl font-heading text-4xl leading-[1.15] tracking-tight text-white [text-shadow:0_2px_20px_rgba(17,16,15,0.7)] sm:mt-9 sm:text-5xl lg:text-6xl"
-        >
-          Un espacio para escucharte, reconocer tus recursos y explorar nuevas perspectivas ante
-          tus decisiones.
-        </h1>
-
-        <p
-          ref={subtitleRef}
-          className="mt-6 max-w-md text-sm leading-relaxed text-mist text-body [text-shadow:0_1px_12px_rgba(17,16,15,0.6)] sm:mt-8 sm:text-base"
-        >
-          Una lectura personalizada para reflexionar sobre tu momento actual, reconocer tus
-          talentos y encontrar nuevas formas de abordar aquello que te preocupa.
-        </p>
-
-        <div ref={ctaRef} className="mt-8 flex flex-col items-center gap-4 sm:mt-10 sm:flex-row">
-          <Magnet padding={50} magnetStrength={16}>
-            <GlareHover className="rounded-full">
-              <Button href="#consulta" variant="accent" size="md">
-                Solicitar mi lectura
-              </Button>
-            </GlareHover>
-          </Magnet>
-          {/* CTA secundario: estilo propio (no Button ghost/outline, pensados
-              para fondo claro) — texto subrayado discreto sobre la foto. */}
-          <Link
-            href="#como-funciona"
-            className="text-sm font-medium text-mist underline decoration-mist-subtle decoration-1 underline-offset-4 transition-colors duration-300 hover:text-accent hover:decoration-accent"
+      {/* Jerarquía: nombre del proyecto (h1) → qué es (frase) → datos
+          concretos del servicio → CTA. Alineado a la izquierda, como el
+          resto de capítulos editoriales, para no tapar las cartas. */}
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+        <div className="flex max-w-2xl flex-col items-start">
+          <p
+            ref={eyebrowRef}
+            className="flex items-center gap-3 whitespace-nowrap text-[13px] font-medium text-accent [text-shadow:0_1px_12px_rgba(17,16,15,0.6)] sm:gap-4 sm:text-sm"
           >
-            Descubrir cómo funciona
-          </Link>
+            <span aria-hidden className="h-px w-6 bg-accent sm:w-10" />
+            Reflexión &middot; Autoconocimiento &middot; Decisiones
+          </p>
+
+          <h1
+            ref={headingRef}
+            className="mt-7 font-heading text-[4rem] leading-[0.92] tracking-tight text-white [text-shadow:0_2px_24px_rgba(17,16,15,0.7)] sm:mt-8 sm:text-8xl lg:text-[7.5rem]"
+          >
+            <span className="block">Oráculo</span>
+            <span className="block italic">Despertar</span>
+          </h1>
+
+          <div ref={subtitleRef} className="mt-8 flex flex-col gap-6 sm:mt-10">
+            <p className="max-w-xl font-heading text-2xl leading-snug text-white/90 [text-shadow:0_1px_16px_rgba(17,16,15,0.7)] sm:text-3xl">
+              Un espacio para escucharte, reconocer tus recursos y explorar nuevas perspectivas
+              ante tus decisiones.
+            </p>
+            {/* En móvil, uno por línea con rombo (la fila con puntos se
+                partía dejando un separador suelto al inicio de línea). */}
+            <ul className="flex flex-col gap-2 text-sm text-mist [text-shadow:0_1px_12px_rgba(17,16,15,0.6)] sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1">
+              {HIGHLIGHTS.map((item, index) => (
+                <li key={item} className="flex items-center gap-3">
+                  <span aria-hidden className="h-1.5 w-1.5 shrink-0 rotate-45 border border-accent sm:hidden" />
+                  {index > 0 ? (
+                    <span aria-hidden className="hidden text-accent sm:inline">
+                      ·
+                    </span>
+                  ) : null}
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div ref={ctaRef} className="mt-10 flex flex-col items-start gap-5 sm:mt-12 sm:flex-row sm:items-center sm:gap-6">
+            <Magnet padding={50} magnetStrength={16}>
+              <GlareHover className="rounded-full">
+                <Button href="#consulta" variant="accent" size="md">
+                  Solicitar mi lectura
+                </Button>
+              </GlareHover>
+            </Magnet>
+            {/* CTA secundario: estilo propio (no Button ghost/outline, pensados
+                para fondo claro) — texto subrayado discreto sobre la foto. */}
+            <Link
+              href="#como-funciona"
+              className="text-sm font-medium text-mist underline decoration-mist-subtle decoration-1 underline-offset-4 transition-colors duration-300 hover:text-accent hover:decoration-accent"
+            >
+              Descubrir cómo funciona
+            </Link>
+          </div>
         </div>
       </div>
 
